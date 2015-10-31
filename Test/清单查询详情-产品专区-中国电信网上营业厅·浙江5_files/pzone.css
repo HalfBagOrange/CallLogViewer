@@ -1,0 +1,1105 @@
+/* CSS Document */
+/* css reset 2009-7-3 by lxd*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,
+fieldset,input,textarea,p,blockquote,th,td {    
+ padding: 0;   
+ margin: 0; 
+ font-size:12px;
+ }   
+table {   
+ border-collapse: collapse;   
+ border-spacing: 0;   
+ }   
+fieldset,img {    
+ border: 0;   
+ }   
+address,caption,cite,code,dfn,em,th,var {   
+ font-weight: normal;   
+ font-style: normal;   
+ }   
+ol,ul {   
+ list-style: none;   
+ }   
+caption,th {   
+ text-align: left;   
+ }   
+h1,h2,h3,h4,h5,h6 {   
+  font-size: 100%;   
+ }   
+q:before,q:after {   
+ content:”;   
+ }   
+abbr,acronym { border: 0;   
+ }
+ 
+ 
+/* end */
+
+
+body{/*定义body的样式,默认状态*/
+	SCROLLBAR-HIGHLIGHT-COLOR:  #ffffff;
+	SCROLLBAR-SHADOW-COLOR:  #ffffff;
+	scrollbar-darkshadow-color: #5D6A7D;
+	SCROLLBAR-3DLIGHT-COLOR: #E7EEF6;
+	SCROLLBAR-TRACK-COLOR: #E7EEF6;
+	scrollbar-face-color:#C0CFE2;
+	scrollbar-Base-Color:#ffffff;
+	scrollbar-arrow-color: #ffffff;
+	color:#333333;
+	margin:0 auto;
+	text-align: center;
+	background-color: #000000;
+}
+body.body01{
+	SCROLLBAR-HIGHLIGHT-COLOR:  #ffffff;
+	SCROLLBAR-SHADOW-COLOR:  #ffffff;
+	scrollbar-darkshadow-color: #5D6A7D;
+	SCROLLBAR-3DLIGHT-COLOR: #E7EEF6;
+	SCROLLBAR-TRACK-COLOR: #E7EEF6;
+	scrollbar-face-color:#C0CFE2;
+	scrollbar-Base-Color:#ffffff;
+	scrollbar-arrow-color: #ffffff;
+	color:#333333;
+	margin:0 auto;
+	text-align: center;
+	width:800px;
+	background-color: #FFFFFF;
+}
+body.body02{
+	SCROLLBAR-HIGHLIGHT-COLOR:  #ffffff;
+	SCROLLBAR-SHADOW-COLOR:  #ffffff;
+	scrollbar-darkshadow-color: #5D6A7D;
+	SCROLLBAR-3DLIGHT-COLOR: #E7EEF6;
+	SCROLLBAR-TRACK-COLOR: #E7EEF6;
+	scrollbar-face-color:#C0CFE2;
+	scrollbar-Base-Color:#ffffff;
+	scrollbar-arrow-color: #ffffff;
+	margin:0 auto;
+	text-align: center;
+	width:383px;
+	background-color: #FFFFFF;
+}
+#body_bg{background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_bg.gif);
+	background-repeat: no-repeat;
+	background-position: top;}
+iframe{/*定义在自定义边框的iframe中,*/
+       width:100%;
+	   height:100%;
+      }
+td{
+	font-size: 12px;
+	color: #333333;
+	line-height: 25px;
+      }
+/* 框架样式 */
+#pzone{
+	width: 976px;
+	overflow:hidden;
+	margin:0 auto;
+	text-align: center;
+	background-color: #fff;
+}
+#pzone_head{
+	height: 46px;
+	width: 976px;
+	float: left;
+}
+#pzone_menu{
+	height: 58px;
+	width: 976px;
+	float: left;
+}
+#pzone_content{
+	width: 976px;
+	float: left;
+	background:#fff;
+	overflow:hidden
+}
+#pzone_copyright{
+	height: 67px;
+	width: 976px;
+	margin-top: 4px;
+	float: left;
+	background-color: #FFFFFF;
+}
+#pzone_packages{
+	width: 168px;
+
+}
+#pzone_business{
+	width: 168px;
+}
+#pzone_issue{
+	width: 168px;
+
+}
+#pzone_pzone_terminology{
+	width: 168px;
+
+}
+/* 中间内容样式 */
+#pzone_function{
+	width: 170px;
+	margin-left: 2px;
+	float: left;
+	overflow: hidden;
+}
+#pzone_collections{
+	width: 168px;
+	float: right;
+	margin-right: 4px;
+}
+#pzone_major{	
+    width: 602px;
+	float: left;
+	text-align:left;
+	margin:0 5px;
+	padding:0 5px;
+}
+.bold{
+	font-weight: bold;
+}
+.pzone_index_bg{
+	background:#fff url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_index_bg.gif) no-repeat right bottom;
+	overflow:hidden;zoom:1;
+}
+.pzone_menu_dashed{
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #cccccc;
+}
+.pzone_tr_1{
+	background-color: #EEEEEE;
+}
+.pzone_tr_2{
+	background-color: #F7F7F7;
+}
+.pzone_tr_3{
+	background-color: #FFF7F0;
+}
+.pzone_select{
+	height: 20px;
+	width: 130px;
+}
+.pzone_select_2{
+	height: 20px;
+	width: 65px;
+}
+.pzone_select_3{
+	height: 20px;
+	width: 100px;
+}
+.pzone_input_3{
+	height: 20px;
+	width: 100px;
+}
+
+.pzone_password_input{
+	height: 20px;
+	width: 130px;
+}
+.pzone_advisory_input{
+	height: 20px;
+	width: 550px;
+}
+.pzone_advisory_textarea{
+	height: 170px;
+	width: 550px;
+}
+.pzone_yellow{
+	font-size: 12px;
+	color: #FF6600;
+	line-height: 27px;
+	padding-left: 9px;
+}
+.pzone_red{
+	font-size: 12px;
+	color: #FF0000;
+	line-height: 27px;
+}
+.pzone_grey{
+	font-size: 12px;
+	color: #666666;
+	line-height: 27px;
+	padding-left: 9px;
+}
+.pzone_black{
+	font-size: 14px;
+	color: #333333;
+	line-height: 34px;
+	font-weight: bold;
+}
+.pzone_collections_top{
+	font-size: 0px;
+	line-height: 0px;
+	height:9px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_function_1.gif);
+	background-repeat: no-repeat;
+	margin-top:4px;
+}
+.pzone_collections_bottom{
+	font-size: 0px;
+	line-height: 0px;
+	height:9px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_function_2.gif);
+	background-repeat: no-repeat;
+}
+.pzone_collections_content{
+	border:1px solid #EC0000;
+	border-width:0 1px;
+	background-color: #F8F8F5;
+		
+}
+.pzone_collections_title{
+	background-image: url(http://zj.189.cn/ct10000v5/images/title/title_pzone_function.gif);
+	background-repeat: no-repeat;
+	height: 23px;
+	margin-left: 4px;
+	padding-left: 26px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+	padding-top: 5px;
+	text-align: left;
+}
+#pzone_collections_liebiao{
+	width: 157px;
+	margin-left: 4px;
+}
+#pzone_collections_liebiao a{color:#666;}
+#pzone_collections_liebiao ul{
+	list-style: none;
+	width: 155px;
+	overflow: hidden;
+	padding:0;
+	margin:0; 
+	border-bottom:1px dashed #ccc;
+}
+.pzone_collections_li{
+	list-style:none;
+	font-size: 12px;
+	color: #000000;
+	text-align: left;
+	padding:8px 0px 8px 30px;
+	background:url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_collections.gif) no-repeat 10px center;
+}
+.pzone_collections_li span{cursor:pointer}
+#pzone_collections_liebiao span a{text-decoration:none;color:#000;}
+.pzone_cdr_li{
+	list-style:none;
+	font-size: 12px;
+	color: #000000;
+	text-align: left;
+	padding:0px 0px 0px 30px;
+	margin-top:10px;
+	
+	
+}
+.pzone_li{
+	list-style:none;
+	font-size: 12px;
+	color: #999999;
+	text-align: left;
+	padding:0px 0px 0px 30px;
+	height:20px;
+	display:none
+}
+.pzone_button{
+	background-image: url(http://zj.189.cn/ct10000v5/images/button/button_pzone.gif);
+	height: 22px;
+	width: 62px;
+	padding-top: 3px;
+	border-width: 0px;
+	font-size: 12px;
+	color: #000000;
+	cursor: pointer;
+}
+A.pzone_Red:link ,A.pzone_Red:visited{
+	FONT-SIZE: 12px; COLOR: #FF0000; FONT-FAMILY: "宋体"; 	TEXT-DECORATION: underline;
+}
+A.pzone_Red:hover {
+	FONT-SIZE: 12px;
+	COLOR: #FF9900;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:none;
+}
+A.pzone_Blue:link ,A.pzone_Blue:visited{
+	FONT-SIZE: 12px; COLOR: #0066CC; FONT-FAMILY: "宋体"; 	TEXT-DECORATION: underline;	padding-left: 9px;
+}
+A.pzone_Blue:hover {
+	FONT-SIZE: 12px;
+	COLOR: #FF0000;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:none;
+	padding-left: 9px;
+}
+A.pzone_777:link ,A.pzone_777:visited{
+	FONT-SIZE: 12px; COLOR: #777777; FONT-FAMILY: "宋体"; 	TEXT-DECORATION: none;	padding-left: 9px;
+}
+A.pzone_777:hover {
+	FONT-SIZE: 12px;
+	COLOR: #FF0000;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:underline;
+	padding-left: 9px;
+}
+A.pzone_Grey:link ,A.pzone_Grey:visited{
+	FONT-SIZE: 12px; COLOR: #666666; FONT-FAMILY: "宋体"; 	TEXT-DECORATION: underline;
+}
+A.pzone_Grey:hover {
+	FONT-SIZE: 12px;
+	COLOR: #FF0000;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:none;
+}
+/*定义功能菜单效果*/
+span.tabs_title_011 {
+	cursor: pointer;
+	font-size: 12px;
+	color: #000000;
+    }
+span.tabs_title_033 {
+	cursor: pointer;
+	font-size: 12px;
+	color: #999999;
+    }
+span.tabs_title_022 {
+	cursor: pointer;
+	font-size: 12px;
+	color: #FF0000;
+	font-weight: bold;
+    }
+A.tabs_title:link ,A.tabs_title:visited{
+TEXT-DECORATION: none;
+}
+A.tabs_title:hover {
+TEXT-DECORATION: none;
+}
+/*公告部分样式*/
+/*个人专区顶部样式*/
+
+
+#pzone_head_logo{ 
+    background-image:url(http://zj.189.cn/ct10000v5/images/pic/pic_Pzone_head01.jpg);
+       width:976px;
+       height:46px;
+}
+.pzone_headlogo{ 
+    background-image:url(http://zj.189.cn/ct10000v5/images/logo/logo_Pzone_01.jpg);
+       float:left;
+       width:290px;
+       height:46px;
+}
+.pzone_topright{float:right;width:240px;font-size:12px;color:#000000}
+.pzone_topright ul{padding:0px;margin:0px;list-style-type:none;}
+.pzone_topright ul li{
+	float:left;
+	display:block;
+	height:24px;
+	line-height:30px;
+	width:70px;
+	text-align:center;
+}
+.pzone_point_2{	
+    background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_head.gif);
+	background-repeat: no-repeat;
+	background-position: right;
+	
+	}
+.pic 
+{line-height:30px; width:17px; padding-top:3px;}
+.pzone_point a:link{
+	color:#FCCCCC;
+	text-decoration: none;
+
+}
+.pzone_point a:hover{
+color:#FFFFFF;
+text-decoration: underline;
+}
+.pzone_point a:visited {
+	TEXT-DECORATION: none;
+	color:#FCCCCC;
+} 
+.pzone_pointright{
+	border-right-style: none;
+}
+.pzone_menu_bg{
+	background-image: url(http://zj.189.cn/ct10000v5/images/logo/logo_Pzone_03.jpg);
+	background-repeat: no-repeat;
+	height: 58px;
+	width: 676px;
+	float: left;
+}
+.button_pzone_menu{
+	background-image: url(http://zj.189.cn/ct10000v5/images/button/button_pzone_menu.gif);
+	float: left;
+	text-align:center;
+	width: 100px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+	line-height:58px;
+	background-repeat: no-repeat;
+}
+   
+.button_pzone_menu a:link {
+	TEXT-DECORATION: none;
+	color:#FFFFFF;
+}
+.pzone_menu_left{
+	height: 58px;
+	float: left;
+	font-size:16px;
+   font-weight:bold;
+   color:#fff;
+   padding-left:20px;
+   line-height:58px;
+}
+.pzone_menu_right{
+	height: 58px;
+	float: left;
+   font-size:12px;
+   color:#fff;
+   line-height:58px;
+   padding-left:20px;
+}
+.button_pzone_menu a:hover {
+	TEXT-DECORATION: underline;
+	color:#FFFF99;
+} 
+.button_pzone_menu a:visited {
+	TEXT-DECORATION: none;
+	color:#FFFFFF;
+} 
+.span{ color:#FDFFA0; padding-right:3px;}
+
+/*个人专区右列内含页样式*/
+.menu {
+    height:100%;
+	width:168px;
+	display:inline;
+}
+
+.menu a:link {
+    color: #333333;
+	 text-decoration: none; 
+	 line-height:25px; 
+	 font-size:12px;
+} 
+.menu a:visited {
+    color: #333333;
+	text-decoration: none; 
+	line-height:25px;  
+	font-size:12px;
+} 
+.menu a:hover {
+    color: #ff0000;
+	text-decoration: none; 
+	line-height:25px;  
+	font-size:12px;
+} 
+.menu_list{
+	float:left;
+	width:170px;
+	background-color:#f3f3f3;
+	margin-top:4px;
+	list-style:outside;
+	height:auto; 
+	overflow: hidden;
+}
+.menu_b{
+	height:19px;
+	line-height:19px;
+	font-size:13px;
+	color:#FFFFFF;
+	padding-left:13px;
+	font-weight:bold;
+	background-image:url(http://zj.189.cn/ct10000v5/images/title/title_PzoNe_bg1.jpg);
+	background-color: #F40000;
+	background-repeat: no-repeat;
+	background-position: right;
+	border-bottom:1px solid #f3f3f3;
+	text-align: left;
+}
+.menu_list_title{
+	width: 168;
+	clear: both;
+}
+.menu ul{
+	padding:0px;
+	margin:0px;
+	
+}
+.menu ul li{
+	padding-left:9px;
+	list-style-type:none;
+	font-size:12px;
+	line-height:28px;
+	text-align: left;   
+}
+.menu_more{
+	float: right;
+	height: 25px;
+	width: 47px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_business_more.gif);
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 10px;
+	padding-top:7px;
+}
+A.menu_red:link ,A.menu_red:visited{
+	FONT-SIZE: 12px; COLOR: #FF3300; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;
+}
+A.menu_red:hover {
+	FONT-SIZE: 12px;
+	COLOR: #FF3300;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:underline;
+}
+/* 个人专区跳出详情页样式 */
+#Pzone_details_top{
+	font-size:14px;
+	color:#333333;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_details_top.gif);
+	background-repeat: repeat-x;
+	height: 35px;
+	width: 800px;
+	padding-top:12px;
+	font-weight: bold;
+	text-align: left;
+	border-width:0px 1px 1px 1px;
+	border-right-style: solid;
+	border-bottom-style: dashed;
+	border-left-style: solid;
+	border-right-color: #E0E0E0;
+	border-bottom-color: #B1D7EF;
+	border-left-color: #E0E0E0;
+}
+#Pzone_details_top_2{
+	font-size:14px;
+	color:#333333;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_details_top.gif);
+	background-repeat: repeat-x;
+	height: 35px;
+	width: 100%;
+	padding-left:10px;
+	padding-top:12px;
+	font-weight: bold;
+	text-align: left;
+	border-width:0px 1px 1px 1px;
+	border-right-style: solid;
+	border-bottom-style: dashed;
+	border-left-style: solid;
+	border-right-color: #E0E0E0;
+	border-bottom-color: #B1D7EF;
+	border-left-color: #E0E0E0;
+	overflow: hidden;
+}
+#Pzone_details_content{
+	border-width:0px 1px 1px 1px;
+	border-style: solid;
+	border-color: #E0E0E0;
+	background-color: #F4FAFF;
+	width: 800px;
+}
+#Pzone_details_content_2{
+	border-width:0px 1px 1px 1px;
+	border-style: solid;
+	border-color: #E0E0E0;
+	background-color: #F4FAFF;
+	width: 100%;
+}
+.Pzone_details_dashed{
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #cccccc;
+	background-color: #FFFFFF;
+}
+#Pzone_details_content td{
+	padding-left: 10px;
+}
+#Pzone_details_content_2 td{
+	padding-left: 10px;
+}
+.pzone_right_dashed{
+	border-right-width: 1px;
+	border-right-style: dashed;
+	border-right-color: #CCCCCC;
+}
+/* 个人专区底部样式 */
+.Copyright{
+	background-color: #9B0000;
+	font-size: 0px;
+	line-height: 0px;
+}
+/* 个人专区详情页底部样式 */
+.Details_cpyright{
+	background-color: #0152A3;
+	font-size: 0px;
+	line-height: 0px;
+}
+#Details_copyright{
+	height: 67px;
+	width: 800px;
+	margin-top: 4px;
+	background-color: #FFFFFF;
+}
+#Details_copyright_2{
+	height: 67px;
+	width: 100%;
+	margin-top: 4px;
+	background-color: #FFFFFF;
+}
+/* 个人专区详情页顶部样式 */
+#Pzone_details_logo{
+	width: 800px;
+	height:88px;
+}
+.Details_logo{
+	background-image: url(http://zj.189.cn/ct10000v5/images/logo/logo_common_01.jpg);
+	background-repeat: no-repeat;
+	background-position: left;
+	height: 88px;
+	background-color: #FFFFFF;
+}
+A.Productszone_orange:link ,A.Productszone_orange:visited{
+	FONT-SIZE: 12px; COLOR: #FF3300; FONT-FAMILY: "宋体"; font-weight: bold;	TEXT-DECORATION: underline;
+}
+A.Productszone_orange:hover {
+	FONT-SIZE: 12px;
+	font-weight: bold;
+	COLOR: #000000;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:none;
+}
+/* 弹出错误提示样式 */
+.error_01{display: none; position: absolute;z-index:1;filter:alpha(opacity=40)" oncontextmenu="return false""}
+.error_02{position:absolute; display: none;  z-index:2; width:383px; cursor:move;" cellspacing="0" cellpadding="0" oncontextmenu="return false""}
+.error_content{
+	width: 380px;
+}
+.error_content_01{
+	width: 380px;
+	margin-top: 20px;
+}
+.error_content_03{
+	width: 380px;
+	margin-top: 100px;
+	margin-left:200px;
+}
+.error_content_02{
+	width: 800px;
+	display: table;
+	padding-bottom:150px;
+	background-color: #ECF5FF;
+	text-align: left;
+}
+.error_top{
+	width: 383px;
+	font-size: 0px;
+	line-height: 0px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_error_01.gif);
+	background-repeat: no-repeat;
+	height: 13px;
+}
+.error_bg{
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_error_bg.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	text-align: left;
+}
+.error_red{
+	font-size: 14px;
+	font-weight: bold;
+	color: #FF0000;
+	line-height: 180%;
+	padding-top: 10px;
+}
+.error_mid{
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_error_02.gif);
+	background-repeat: repeat-y;
+	width: 383px;
+}
+.error_bottom{
+	width: 383px;
+	font-size: 0px;
+	line-height: 0px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_error_03.gif);
+	background-repeat: no-repeat;
+	height: 13px;
+}
+/* 2008.10.27特别提醒样式 */
+.pzone_remind{
+	float:left;
+	width:168px;
+	border:solid #FFCC00 1px;
+	background-color:#FFF7E8;
+	margin-top:4px;
+	list-style:outside;
+	height:auto; 
+	overflow: hidden;
+}
+.pzone_remind_top{
+	background-image: url(http://zj.189.cn/ct10000v5/images/title/title_remind_top.gif);
+	height: 25px;
+	width: 168px;
+	line-height: 25px;
+	background-repeat: no-repeat;
+	text-align: left;
+}
+.pzone_remind_red{
+	font-size: 13px;
+	font-weight: bold;
+	color: #FF0000;
+	margin-left:13px;
+}
+.pzone_remind_mid{
+	width: 148px;
+	height:auto;
+	margin:0px 10px 10px 10px;
+	padding:0px;
+	text-align: left;
+	font-size: 12px;
+	color: #FF9900;
+	line-height: 21px;
+}
+A.pzone_remind_orange:link ,A.pzone_remind_orange:visited{
+	FONT-SIZE: 12px;
+	COLOR: #FF6600;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: underline;
+	font-weight: bold;
+}
+A.pzone_remind_orange:hover {
+	FONT-SIZE: 12px;
+	COLOR: #FF6600;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:none;
+	font-weight: bold;
+}
+A.pzone_remind_grey:link ,A.pzone_remind_grey:visited{
+	FONT-SIZE: 12px; COLOR: #333333; FONT-FAMILY: "宋体"; 	TEXT-DECORATION: none;
+}
+A.pzone_remind_grey:hover {
+	FONT-SIZE: 12px;
+	COLOR: #FF0000;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:underline;
+}
+/* 2008.10.28个人专区宽带续包样式 */
+.pzone_tips{
+	height: 128px;
+	width: 605px;
+}
+.pzone_tips_top{
+	height: 10px;
+	width: 605px;
+	font-size: 0px;
+	line-height: 0px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_tips_top.gif);
+	background-repeat: no-repeat;
+}
+.pzone_tips_bottom{
+	height: 13px;
+	width: 605px;
+	font-size: 0px;
+	line-height: 0px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_tips_dom.gif);
+	background-repeat: no-repeat;
+}
+.pzone_tips_mid{
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_tips_mid.gif);
+	background-repeat: repeat-y;
+	height: 105px;
+	width: 605px;
+	vertical-align: top;
+	text-align: center;
+}
+.pzone_tips_bg{
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_tips_bg.gif);
+	height: 82px;
+	width: 291px;
+	background-repeat: repeat-x;
+	border: 1px solid #CCCCCC;
+}
+.pzone_tips_black{
+	font-size: 13px;
+	font-weight: bold;
+	color: #000000;
+	line-height: 28px;
+}
+.pzone_tips_red{
+	font-size: 14px;
+	font-weight: bold;
+	color: #FF0000;
+	line-height: 28px;
+	margin-left: 12px;
+}
+.pzone_tips_orange{
+	font-size: 12px;
+	color: #FF6600;
+	line-height: 28px;;
+}
+A.pzone_tips_blue:link ,A.pzone_tips_blue:visited{
+	FONT-SIZE: 12px; COLOR: #0066CC; FONT-FAMILY: "宋体"; 	TEXT-DECORATION: underline;
+}
+A.pzone_tips_blue:hover {
+	FONT-SIZE: 12px;
+	COLOR: #FF0000;
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION:none;
+}
+/*温馨提示层样式开始*/
+.error_top_2{
+	width: 383px;
+	font-size: 0px;
+	line-height: 0px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_error_01_02.gif);
+	background-repeat: no-repeat;
+	height: 13px;
+}
+.error_bg_2{
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_error_02_02.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	text-align: left;
+}
+.error_bull{
+	font-size: 14px;
+	font-weight: bold;
+	color: #0066CC;
+	line-height: 180%;
+}
+.error_mid_2{
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_error_bg_02.gif);
+	background-repeat: repeat-y;
+	width: 383px;
+}
+.error_bottom_2{
+	width: 383px;
+	font-size: 0px;
+	line-height: 0px;
+	background-image: url(http://zj.189.cn/ct10000v5/images/pic/pic_error_03_02.gif);
+	background-repeat: no-repeat;
+	height: 13px;
+}
+/*温馨提示层样式结束*/
+/*账单详情样式*/
+#Pzone_details_content_3{
+	border-width:0px 1px 1px 1px;
+	border-style: solid;
+	border-color: #E0E0E0;
+	background-color: #F4FAFF;
+	width: 100%;
+}
+.Pzone_bill_details_bold{
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	padding-left:10px;
+}
+.Pzone_bill_bold{
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	padding-left:20px;
+}
+.Pzone_bill_details_black{
+	font-size: 12px;
+	color: #333333;
+	padding-left:30px;
+}
+.Pzone_bill_black{
+	font-size: 12px;
+	color: #333333;
+	padding-left:10px;
+}
+.Pzone_bill_black_2{
+	font-size: 12px;
+	color: #333333;
+	font-weight: bold;
+	padding-left:20px;
+}
+.Pzone_bill_blue{
+	font-size: 12px;
+	color: #003366;
+	padding-left:10px;
+	font-weight: bold;
+}
+/*皮肤效果样式*/
+#Layer12 {
+	position:absolute;
+	width:105px;
+	height:auto;
+	z-index:1;
+	left:860px;
+	top: 22px;
+	background-color: #FFFFFF;
+	border: 1px solid #E4E4E4;
+}
+#Layer12 td{
+	text-decoration: none;
+	cursor:pointer;
+}
+.Layer12_gray{
+	background-color: #F3F3F3;
+}
+.Skin_red{
+	font-size: 12px;
+	color: #FF0000;
+	border-bottom: 1px dashed #D1D1D1;
+}
+.Skin_bule{
+	font-size: 12px;
+	color: #0F4D92;
+	border-bottom: 1px dashed #D1D1D1;
+}
+.Skin_green{
+	font-size: 12px;
+	color: #2B5757;
+	border-bottom: 1px dashed #D1D1D1;
+}
+/* 新版 2009-7-3 by lxd*/
+.pzone_hot{width:602px;}
+	.pzone_hot .hd{ background:url(http://zj.189.cn/ct10000v5/images/pic/pic_pz_boxtop.gif) no-repeat; position:relative;height:29px;}
+		.pzone_hot .hd h2{line-height:29px;padding-left:30px;}
+		.pzone_hot .hd .more{color:#f60; position:absolute;right:20px;top:8px;}
+	.pzone_hot .pack{ background:url(http://zj.189.cn/ct10000v5/images/pic/pic_pz_boxbody.gif) no-repeat left bottom;padding:30px;zoom;1;overflow:hidden;}
+		.pzone_hot .pack .g1{float:left;border-right:1px dashed #ccc;padding-right:10px;margin-right:10px;}
+.pzone_zxkf{padding:5px 0}
+.pzone_button2{background:url(http://zj.189.cn/ct10000v5/images/button/button_pzone_0.gif) no-repeat;border:none;width:50px;height:22px;line-height:22px;color:#fff;margin-left:20px;}
+.pzone_button3{background:url(http://zj.189.cn/ct10000v5/images/button/button_pzone_2.gif) no-repeat;border:none;width:81px;height:22px;line-height:22px;color:#fff;margin-left:20px;}
+.pzone_listTb{}
+	.pzone_listTb th{padding:0 8px;color:#ff5a00;line-height:24px;}
+	.pzone_listTb td{padding:0 8px;}
+.pzone_tabs{padding:10px 15px 0;border-bottom:1px solid #ccc;margin-bottom:20px;}
+	.pzone_tabs ul{zoom:1;overflow:hidden; position:relative;height:24px;bottom:-2px;}
+	.pzone_tabs li{float:left;width:99px;text-align:center; }
+	.pzone_tabs a {display:block;height:24px;width:99px;line-height:24px;color:#666;text-decoration:none}
+	.pzone_tabs a.curr{ background:url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_tab.gif) no-repeat;}
+.pzone_jfcx{margin:15px 0;}
+	.pzone_jfcx td{ border:1px solid #d5d5d5;padding:3px 8px}
+.pzone_moreyw {padding:0 20px}
+	.pzone_moreyw h2{line-height:30px;}
+	.pzone_moreyw a{margin:0 18px;}
+.pzone_ybywList{}
+	.pzone_ybywList th{padding:0 8px; background:#fed6d3;line-height:25px;}
+	.pzone_ybywList td{padding:0 8px;}
+.pzone_tb td{padding:0 8px; }
+.pzone_ywbl_h2 {color:#f60;font-size:14px; text-align:center}
+.pzone_ywbl_intro{zoom:1;overflow:hidden;padding-left:94px;}
+	.pzone_ywbl_intro dt{float:left;width:135px;height:125px; }
+	.pzone_ywbl_intro dd{margin-left:150px;padding:20px 0  0}
+	.pzone_ywbl_intro dd .d{ background:url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_order.gif) no-repeat left center;padding-left:15px;margin: 5px 0}
+	.pzone_ywbl_intro dd .d strong{color:#f60;font-size:14px; }
+	.pzone_ywbl_intro dd .d em{color:#f60;}
+.pzone_ywbl_btn {text-align:center;padding:10px 0}
+.pzone_kexuanTd{}
+	.pzone_kexuanDiv{ position:absolute; background:#fff;border:1px solid #ccc;color:#f60; z-index:100;display:none;padding:8px;}
+.pzone_alert{position:absolute;width:280px;height:100px;border:1px solid #ccc; background:#fff;top:50%;left:50%;margin:-80px 0 0 -100px}
+	.pzone_alert .top{padding:3px;text-align:right;border-bottom:1px dashed #ccc;margin:0 10px;}
+	.pzone_alert .top a{color:#333;text-decoration:none;font-size:14px;}
+	.pzone_alert .pack{padding:20px;}
+.userzone_yeqian {border-bottom:1px solid #ffc794;height:20px;line-height:20px;}
+.userzone_yeqian1 {background:url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_tabsAlt.gif) no-repeat;color:#000000;font-weight:bold;height:20px;line-height:20px;text-align:center;width:95px;}
+.userzone_yeqian2 {background:url(http://zj.189.cn/ct10000v5/images/pic/pic_pzone_tabs.gif) no-repeat;color:#999999;font-size:12px;height:20px;line-height:20px;text-align:center;width:95px;}
+.userzone_neirong_nr {border-bottom:1px dashed #CCCCCC;color:#666666;font-size:12px;line-height:24px;text-align:center;}
+.userzone_neirong_title {background:#AAD7EA;border-bottom:1px dashed #CCCCCC;color:#000000;font-size:12px;font-weight:bold;ine-height:24px;text-align:center;}
+/*张剑凤增加样式开始*/
+.linkstyle 
+{
+float:left;
+width:300px;
+}
+.linkstyle a
+{
+color:#1873ce;
+text-decoration:none;
+}
+.fontstyle
+{
+float:left;
+font-weight:bold;
+color:#ff6501;
+margin-left:7px;
+}
+.bgstyle
+{
+background:url(http://zj.189.cn/ct10000v5/images/pic/zif_title.jpg);
+height:42px;
+}
+.fontsytle2
+{
+font-size:15px;
+font-weight:bold;
+}
+.tdborder
+{
+border:#c5c5c5 solid 1px;
+margin-top:10px;
+}
+.imgdiv
+{
+float:left;
+width:50px;
+margin-top:15px;
+margin-right:10px;
+}
+.e9_style
+{
+padding-left:17px;
+width:563px;
+font-size:15px;
+font-weight:bold;
+height:40px;
+line-height:40px;
+color:#ff6501;
+}
+.bottonstyle
+{
+text-align:right;
+padding-top:8px;
+}
+.redfont
+{
+color:#fe0000;
+}
+.grayfont
+{
+font-size:15px;
+font-weight:bold;
+color:#a3a3a3;
+padding-left:40px;
+}
+.redbg
+{
+background:url(http://zj.189.cn/ct10000v5/images/pic/redbg.jpg);
+height:26px;
+}
+.whitefont
+{
+font-size:13px;
+font-weight:bold;
+color:#FFFFFF;
+padding-left:50px;
+}
+.bgstyle1
+{
+background:url(http://zj.189.cn/ct10000v5/images/pic/zjf_title2.jpg);
+height:27px;
+width:565px;
+}
+.whitefont1
+{
+font-size:15px;
+font-weight:bold;
+color:#FFFFFF;
+padding-left:8px;
+}
+.zjf_td_hight
+{
+	text-align:center;
+	height:30px;
+}
+/*张剑凤增加样式结束*/
