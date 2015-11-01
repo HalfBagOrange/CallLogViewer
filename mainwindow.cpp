@@ -47,6 +47,28 @@
 
 //! [1]
 
+class WebView : public QWebView
+{
+public : 
+	WebView(QWidget *parent)
+		:QWebView(parent)
+	{
+		settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
+	}
+
+	QWebView *createWindow(QWebPage::WebWindowType type)
+	{
+		int i = (int)type;
+		QWebView *view = QWebView::createWindow(type);
+		/*
+		if ()
+		{
+
+		}
+		*/
+		return this;
+	}
+};
 
 MainWindow::MainWindow(const QUrl& url)
 {
@@ -68,7 +90,7 @@ MainWindow::MainWindow(const QUrl& url)
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 
 //! [2]
-    view = new QWebView(this);
+    view = new WebView(this);
     view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     view->load(url);
 
