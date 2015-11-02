@@ -29,19 +29,40 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: ".\Win32\Release\CallLogViewer.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\Qt5Sql.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\qwt.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\Qt5Xml.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\Qt5Network.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\Qt5WebKit.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\Qt5WebKitWidgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\Qt5Sql.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\qwt.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\Qt5Xml.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\Qt5Network.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\Qt5WebKit.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\Libs\Qt5WebKitWidgets.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\fetch.png"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\calllog.db"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\libeay32.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Libs\ssleay32.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: ".\calllog.db"; DestDir: "{app}"; Flags: ignoreversionSource: ".\Libs\libeay32.dll"; DestDir: "{app}"; Flags: ignoreversionSource: ".\Libs\ssleay32.dll"; DestDir: "{app}"; Flags: ignoreversion
+
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5CORE.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5GUI.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5WIDGETS.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5SQL.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QWT.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5PRINTSUPPORT.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5SVG.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5OPENGL.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5XML.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5NETWORK.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5WEBKITWIDGETS.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5WEBKIT.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5SENSORS.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5MULTIMEDIAWIDGETS.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5MULTIMEDIA.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\ICUIN54.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\ICUUC54.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\ICUDT54.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5POSITIONING.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5QUICK.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5QML.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5WEBCHANNEL.DLL"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
