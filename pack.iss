@@ -38,8 +38,7 @@ Source: ".\Win32\Release\CallLogViewer.exe"; DestDir: "{app}"; Flags: ignorevers
 ;Source: ".\Libs\Qt5Network.dll"; DestDir: "{app}"; Flags: ignoreversion
 ;Source: ".\Libs\Qt5WebKit.dll"; DestDir: "{app}"; Flags: ignoreversion
 ;Source: ".\Libs\Qt5WebKitWidgets.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\fetch.png"; DestDir: "{app}"; Flags: ignoreversion
-;Source: ".\calllog.db"; DestDir: "{app}"; Flags: ignoreversionSource: ".\Libs\libeay32.dll"; DestDir: "{app}"; Flags: ignoreversionSource: ".\Libs\ssleay32.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\fetch.png"; DestDir: "{app}"; Flags: ignoreversionSource: ".\calllog.db"; DestDir: "{app}"; Flags: ignoreversionSource: ".\Libs\libeay32.dll"; DestDir: "{app}"; Flags: ignoreversionSource: ".\Libs\ssleay32.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5CORE.DLL"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5GUI.DLL"; DestDir: "{app}"; Flags: ignoreversion
@@ -63,6 +62,7 @@ Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5POSITIONING.DLL"; DestDir: "{app}
 Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5QUICK.DLL"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5QML.DLL"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\bin\QT5WEBCHANNEL.DLL"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\qt\qt5.5.0_w32\5.5\msvc2013\plugins\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -127,6 +127,8 @@ void CallLogViewer::onImportFromWeb()
 {
 	QUrl url = QUrl(QStringLiteral("http://www.189.cn/"));
 	MainWindow* browser = new MainWindow(url);
+
+	connect(browser, SIGNAL(sqlDatachanged()), this, SLOT(updateSqlModel()));
 	//browser->setParent(this);
 	browser->show();
 }

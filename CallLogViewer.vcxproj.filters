@@ -103,10 +103,8 @@
     <CustomBuild Include="GeneratedFiles\ui_ChartDialog.h">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="mainwindow.h">
+    <CustomBuild Include="mainwindow.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
   </ItemGroup>
 </Project>

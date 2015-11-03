@@ -75,6 +75,7 @@ MainWindow::MainWindow(const QUrl& url)
     setWindowTitle("CallLogBrowser");
     progress = 0;
 
+	m_firtOpen = true;
 	setWindowState(Qt::WindowMaximized);
 /*
     QFile file;
@@ -183,6 +184,14 @@ void MainWindow::fetchCallLog()
         return;
     }
 
+	if (m_firtOpen && 
+		(QMessageBox::Yes == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否删除原先的数据"))))
+	{
+		m_firtOpen = false;
+		QSqlQuery query;
+		query.exec("delete from CallLog");
+	}
+
     QWebElementCollection trAll = table.findAll("tr");
     qDebug() << "tr count " << trAll.count();
 
@@ -207,22 +216,22 @@ void MainWindow::fetchCallLog()
 		QString number = tdAll[1].toPlainText();
 		QString type = tdAll[2].toPlainText();
 		QString time = tdAll[3].toPlainText();
-		time.remove(time.size()/2, time.size()/2);
+//		time.remove(time.size()/2, time.size()/2);
 		QString duration = tdAll[4].toPlainText();
-		duration.remove(duration.size()/2, duration.size()/2);
+//		duration.remove(duration.size()/2, duration.size()/2);
 		QString address = tdAll[5].toPlainText();
 		QString chargeType = tdAll[6].toPlainText();
-		chargeType.remove(chargeType.size() / 2, chargeType.size() / 2);
+//		chargeType.remove(chargeType.size() / 2, chargeType.size() / 2);
 		QString localCharge = tdAll[7].toPlainText();
-		localCharge.remove(localCharge.size() / 2, localCharge.size() / 2);
+//		localCharge.remove(localCharge.size() / 2, localCharge.size() / 2);
 		QString foreignerCharge = tdAll[8].toPlainText();
-		foreignerCharge.remove(foreignerCharge.size() / 2, foreignerCharge.size() / 2);
+//		foreignerCharge.remove(foreignerCharge.size() / 2, foreignerCharge.size() / 2);
 		QString freeCharge = tdAll[9].toPlainText();
-		freeCharge.remove(freeCharge.size() / 2, freeCharge.size() / 2);
+//		freeCharge.remove(freeCharge.size() / 2, freeCharge.size() / 2);
 		QString totalCharge = tdAll[10].toPlainText();
-		totalCharge.remove(totalCharge.size() / 2, totalCharge.size() / 2);
+//		totalCharge.remove(totalCharge.size() / 2, totalCharge.size() / 2);
 		QString remarks = tdAll[11].toPlainText();
-		remarks.remove(remarks.size() / 2, remarks.size() / 2);
+//		remarks.remove(remarks.size() / 2, remarks.size() / 2);
 
 		QSqlQuery query;
 		QString cmd;
@@ -237,6 +246,8 @@ void MainWindow::fetchCallLog()
     QString info;
     QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");
     QMessageBox::about(this, QStringLiteral("信息"), info);
+
+	emit sqlDatachanged();
 }
 
 #include "calllogviewer.h"

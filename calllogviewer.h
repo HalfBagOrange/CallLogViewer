@@ -22,13 +22,13 @@ public slots:
 	void onClearData();
 	void onImportFromWeb();
 	void onExportToFile();
+	void updateSqlModel(void);
 
 private:
 	QDomNode getElementById(QDomDocument& xml);
 	bool parseFile(QString& fn);
 	bool parseDiv(QDomNode& div);
 	bool fetchDate(QDomNode& tr);
-	void updateSqlModel(void);
 
 public:
 	QMySqlTableModel* m_sqlTableModel;

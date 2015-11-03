@@ -57,6 +57,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(const QUrl& url);
 
+signals:
+	void sqlDatachanged();
+
 protected slots:
 
     void adjustLocation();
@@ -85,6 +88,7 @@ private:
     QLineEdit *locationEdit;
     QAction *rotateAction;
     int progress;
+	bool m_firtOpen;
 //! [1]
 };
 
