@@ -13,13 +13,19 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 {
 	ui.setupUi(this);
 
+	/*
 	ui.comboBox_2->insertItem(0, QStringLiteral("Ìì"), "day");
 	ui.comboBox_2->insertItem(0, QStringLiteral("ÖÜ"), "week");
 	ui.comboBox_2->insertItem(0, QStringLiteral("ÔÂ"), "month");
+	*/
 
-	m_barChart = new BarChart(this);
-	m_barChart->setPlot(ui.qwtPlot);
+	m_timeChart = new BarChart(this);
+	m_timeChart->setPlot(ui.qwtPlot);
 
+	m_countChart = new BarChart(this);
+	m_countChart->setPlot(ui.qwtPlot_2);
+
+	/*
 	m_sqlTableModel = new QSqlTableModel(this);
 	QSqlQuery query;
 	query.exec("SELECT DISTINCT phonenumber FROM CallLog");
@@ -27,27 +33,63 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 	ui.comboBox->setModel(m_sqlTableModel);
 
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(statsButtonClicked()));
-
+	*/
 //	query.exec("SELECT callstarttime FROM CallLog ORDER BY callstarttime");
+	QSqlQuery query;
+
 	query.exec("SELECT MIN(callstarttime) AS callstarttime FROM CallLog");
 	query.first();
 	QVariant min = query.value("callstarttime");
+
 	query.exec("SELECT MAX(callstarttime) AS callstarttime FROM CallLog");
 	query.first();
-//	query.last();
 	QVariant max = query.value("callstarttime");
 
+	ui.dateEdit->setCalendarPopup(true);
 	ui.dateEdit->setDate(QDateTime::fromTime_t(min.toUInt()).date());
-	ui.dateEdit->setDateRange(QDateTime::fromTime_t(min.toUInt()).date(), QDateTime::fromTime_t(max.toUInt()).date());
+//	ui.dateEdit->setDateRange(QDateTime::fromTime_t(min.toUInt()).date(), QDateTime::fromTime_t(max.toUInt()).date());
 
+	ui.dateEdit_2->setCalendarPopup(true);
 	ui.dateEdit_2->setDate(QDateTime::fromTime_t(max.toUInt()).date());
-	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(min.toUInt()).date(), QDateTime::fromTime_t(max.toUInt()).date());
+//	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(min.toUInt()).date(), QDateTime::fromTime_t(max.toUInt()).date());
+
+//	connect(ui.dateEdit, SIGNAL(editingFinished()), this, SLOT(dateTimeChanged()));
+//	connect(ui.dateEdit_2, SIGNAL(editingFinished()), this, SLOT(dateChanged()));
 }
 
 ChartDialog::~ChartDialog()
 {
 }
 
+void ChartDialog::dateChanged()
+{
+	QDateTime startDate = ui.dateEdit->dateTime();
+	QDateTime endDate = ui.dateEdit_2->dateTime();
+
+	QString cmd;
+	QTextStream(&cmd) << "SELECT DISTINCT phonenumber FROM CallLog WHERE callstarttime >= "
+		<< startDate.toTime_t() << " AND callstarttime < " << startDate.addDays(1).toTime_t();
+
+	QSqlQuery queryPhoneNumber(cmd);
+	while (queryPhoneNumber.next())
+	{
+		QString phoneNumber = queryPhoneNumber.value("phonenumber").toString();
+
+		QTextStream(&cmd) << "SELECT * FROM CallLog WHERE callstarttime >= "
+			<< startDate.toTime_t() << " AND callstarttime < " << endDate.toTime_t()
+			<< " AND phonenumber = " << phoneNumber;
+
+		QSqlQuery queryCallLog(cmd);
+		int count = queryCallLog.size();
+		int time = 0;
+		while (queryCallLog.next())
+		{
+			time += queryCallLog.value("callduration").toInt();
+		}
+	}
+}
+
+/*
 void ChartDialog::statsButtonClicked()
 {
 	QString number = ui.comboBox->currentText();
@@ -71,3 +113,4 @@ void ChartDialog::statsButtonClicked()
 
 	m_barChart->replot();
 }
+*/

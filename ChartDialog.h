@@ -18,12 +18,14 @@ public:
 	~ChartDialog();
 
 public slots:
-	void statsButtonClicked();
+//	void statsButtonClicked();
+void dateChanged();
 
 private:
-	BarChart* m_barChart;
+	BarChart* m_timeChart;
+	BarChart* m_countChart;
 	Ui::ChartDialog ui;
-	QSqlQueryModel* m_sqlTableModel;
+	//QSqlQueryModel* m_sqlTableModel;
 };
 
 #endif
