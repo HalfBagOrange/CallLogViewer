@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>ChartDialog</class>
- <widget class="QDialog" name="ChartDialog">
+ <widget class="QMainWindow" name="ChartDialog">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>
@@ -16,9 +16,7 @@
   <property name="windowTitle">
    <string>柱状图</string>
   </property>
-  <property name="modal">
-   <bool>false</bool>
-  </property>
+  <widget class="QWidget" name="centralWidget" >
   <widget class="QwtPlot" name="qwtPlot">
    <property name="geometry">
     <rect>
@@ -93,6 +91,7 @@
     </rect>
    </property>
   </widget>
+ </widget>
  </widget>
  <customwidgets>
   <customwidget>

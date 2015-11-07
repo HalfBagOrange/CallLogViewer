@@ -17,26 +17,15 @@ public:
 	~CallLogViewer();
 
 public slots:
-	void onLoadIn();
-	void onChart();
-	void onClearData();
-	void onImportFromWeb();
-	void onExportToFile();
-	void updateSqlModel(void);
-
-private:
-	QDomNode getElementById(QDomDocument& xml);
-	bool parseFile(QString& fn);
-	bool parseDiv(QDomNode& div);
-	bool fetchDate(QDomNode& tr);
-
-public:
-	QMySqlTableModel* m_sqlTableModel;
-	QSqlQueryModel* m_comSqlModel;
+	void slotChart();
+	void slotClearData();
+	void slotImportFromWeb();
+	void slotExportToFile();
+	void slotUpdateSqlModel();
 
 private:
 	Ui::CallLogViewerClass ui;
-	
+	QMySqlTableModel* m_sqlTableModel;
 };
 
 #endif // CALLLOGVIEWER_H

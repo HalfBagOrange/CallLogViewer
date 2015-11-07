@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QSqlError>
 #include "ChartDialog.h"
+#include "mainwindow.h"
 #include "CallLogViewer.h"
 
 class QMySqlTableModel : public QSqlTableModel
@@ -47,54 +48,39 @@ protected:
 CallLogViewer::CallLogViewer(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags)
 {
+	setWindowState(Qt::WindowMaximized);
+
 	ui.setupUi(this);
+
 	QMenu* fileMenu = ui.menuBar->addMenu(QStringLiteral("文件"));
 	QAction* webImportAct = fileMenu->addAction(QStringLiteral("从WEB导入....."));
-	connect(webImportAct, SIGNAL(triggered()), this, SLOT(onImportFromWeb()));
-	/*
-	QAction* exportAct = fileMenu->addAction(QStringLiteral("导出到文件....."));
-	connect(exportAct, SIGNAL(triggered()), this, SLOT(onExportToFile()));
-	*/
+	connect(webImportAct, SIGNAL(triggered()), this, SLOT(slotImportFromWeb()));
+
+//	QAction* exportAct = fileMenu->addAction(QStringLiteral("导出到文件....."));
+//	connect(exportAct, SIGNAL(triggered()), this, SLOT(slotExportToFile()));
 //	QAction* clearAct = fileMenu->addAction(QStringLiteral("清空数据"));
-//	connect(clearAct, SIGNAL(triggered()), this, SLOT(onClearData()));
-//	QAction* loadAct = fileMenu->addAction(QStringLiteral("导入..."));
-//	loadAct->setShortcuts(QKeySequence::Open);
-//	connect(loadAct, SIGNAL(triggered()), this, SLOT(onLoadIn()));
+//	connect(clearAct, SIGNAL(triggered()), this, SLOT(slotClearData()));
 
 	QMenu* toolMenu = ui.menuBar->addMenu(QStringLiteral("工具"));
 	QAction* chartAct = toolMenu->addAction(QStringLiteral("柱状图"));
-	connect(chartAct, SIGNAL(triggered()), this, SLOT(onChart()));
-
-	setWindowState(Qt::WindowMaximized);
+	connect(chartAct, SIGNAL(triggered()), this, SLOT(slotChart()));
  
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-	//db.setDatabaseName(":memory:");
+//	db.setDatabaseName(":memory:");
 	db.setDatabaseName("calllog.db");
-	Q_ASSERT(db.open());
 
-	/*
-	QTextStream(&cmd) << "insert into CallLog values('" << number << "', '" << type << "', "
-	<< (int)QDateTime::fromString(time, "yyyy-MM-dd hh:mm:ss").toTime_t() << ", "
-	<< QTime::fromString(duration, "hh:mm:ss").msecsSinceStartOfDay() << ", '" << address << "', '"
-	<< chargeType << "', " << localCharge.toFloat() << ", " << foreignerCharge.toFloat() << ", "
-	<< freeCharge.toFloat << ", " << totalCharge.toFloat() << ", '" << remarks << "');";
-	*/
 	QSqlQuery query;
-	query.exec("create table CallLog(phonenumber varchar(32), calltype varchar(16), callstarttime int, callduration int, calladdress varchar(128), chargeType varchar(32), localCharge varchar(32), foreignerCharge varchar(32), freeCharge varchar(32), totalCharge varchar(32), remarks varchar(32))");
+	query.exec("create table CallLog(phonenumber varchar(32), calltype varchar(16), callstarttime int, callduration int, calladdress varchar(128), chargetype varchar(32), localcharge varchar(32), foreignercharge varchar(32), freecharge varchar(32), totalcharge varchar(32), remarks varchar(32))");
 
 	m_sqlTableModel = new QMySqlTableModel(this);
 	ui.tableView->setModel(m_sqlTableModel);
-	ui.tableView->setColumnWidth(0, 100);
-	ui.tableView->setColumnWidth(2, 300);
+//	ui.tableView->setColumnWidth(0, 100);
+//	ui.tableView->setColumnWidth(2, 300);
 
-	ui.comboBox->hide();
-	m_comSqlModel = new QSqlQueryModel(this);
-	ui.comboBox->setModel(m_comSqlModel);
-
-	updateSqlModel();
+	slotUpdateSqlModel();
 }
 
-void CallLogViewer::updateSqlModel(void)
+void CallLogViewer::slotUpdateSqlModel(void)
 {
 	m_sqlTableModel->setTable("CallLog");
 	m_sqlTableModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
@@ -111,39 +97,31 @@ void CallLogViewer::updateSqlModel(void)
 	m_sqlTableModel->setHeaderData(8, Qt::Horizontal, QVariant(QStringLiteral("减免")));
 	m_sqlTableModel->setHeaderData(9, Qt::Horizontal, QVariant(QStringLiteral("费用小计")));
 	m_sqlTableModel->setHeaderData(10, Qt::Horizontal, QVariant(QStringLiteral("备注")));
-
-	QSqlQuery query;
-	query.exec("SELECT DISTINCT phonenumber FROM CallLog");
-	m_comSqlModel->setQuery(query);
 }
 
 CallLogViewer::~CallLogViewer()
 {
 }
 
-#include "mainwindow.h"
-
-void CallLogViewer::onImportFromWeb()
+void CallLogViewer::slotImportFromWeb()
 {
 	QUrl url = QUrl(QStringLiteral("http://www.189.cn/"));
 	MainWindow* browser = new MainWindow(url);
 
 	connect(browser, SIGNAL(sqlDatachanged()), this, SLOT(updateSqlModel()));
-	//browser->setParent(this);
 	browser->show();
 }
 
-void CallLogViewer::onExportToFile()
+void CallLogViewer::slotExportToFile()
 {
-
 }
 
-void CallLogViewer::onClearData()
+void CallLogViewer::slotClearData()
 {
 	QSqlQuery query;
 	if (query.exec("delete from CallLog"))
 	{
-		updateSqlModel();
+		slotUpdateSqlModel();
 		QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("清空通话记录成功"));
 	}
 	else
@@ -154,130 +132,8 @@ void CallLogViewer::onClearData()
 	}
 }
 
-void CallLogViewer::onLoadIn()
+void CallLogViewer::slotChart()
 {
-	QSqlQuery query;
-	query.exec("create table CallLog(phonenumber varchar(32), calltype varchar(16), callstarttime int, callduration int, calladdress varchar(128))");
-
-	QStringList fileNames = QFileDialog::getOpenFileNames(this, "", "", "(*.html *.xml)");
-	for(int i=0; i < fileNames.size(); i++)
-	{
-		QString& fn = fileNames[i];
-		parseFile(fn);
-	}
-}
-
-void CallLogViewer::onChart()
-{
-	ChartDialog* chartialog = new ChartDialog(this);
-	chartialog->open();
-}
-
-bool CallLogViewer::parseFile(QString& fn)
-{
-	QFile file(fn);
-	if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
-	{
-		QMessageBox::information(NULL, QStringLiteral("警告"), QStringLiteral("打开文件失败！！！"));
-		return false;
-	}
-	
-	QDomDocument xml;
-	QString errMsg;
-	int errLine = 0;
-	int errColumn = 0;
-	if(!xml.setContent(&file, &errMsg, &errLine, &errColumn))
-	{
-		file.close();
-		QMessageBox::information(NULL, QStringLiteral("警告"), QStringLiteral("文件格式不对，请导入xml文件!!!"));
-		return false;
-	}
-
-	QDomNode div = getElementById(xml);
-	if(!div.isNull())
-	{
-		if(parseDiv(div))
-		{
-			file.close();
-			return true;
-		}
-	}
-
-	file.close();
-	QMessageBox::information(NULL, QStringLiteral("警告"), QStringLiteral("文件解析失败！！！"));
-	return false;
-}
-
-QDomNode CallLogViewer::getElementById(QDomDocument& xml)
-{
-	QDomNodeList nodeList = xml.elementsByTagName("div");
-	for(int i=0; i<nodeList.size(); i++)
-	{
-		QDomNode node = nodeList.item(i);
-		if(node.isNull())
-		{
-			continue;
-		}
-		
-		QDomNamedNodeMap attrs = node.attributes();
-		for(int j=0; j<attrs.size(); j++)
-		{
-			QDomNode attr = attrs.item(j);
-			if(attr.nodeName() == "id" && attr.nodeValue() == "Pzone_details_content_2")
-			{
-				return node;
-			}
-		}
-	}	
-	return QDomNode();
-}
-
-bool CallLogViewer::parseDiv(QDomNode& div)
-{
-	QDomNode table = div.firstChildElement();
-	QDomNode tbody = table.firstChildElement();
-	QDomNode tr = tbody.firstChildElement();
-	tr = tr.nextSiblingElement();
-	tr = tr.nextSiblingElement();
-
-	int count = 0;
-	for(; !tr.isNull(); tr = tr.nextSiblingElement())
-	{
-		fetchDate(tr);
-		count++;
-	}
-	count;
-	return true;
-}
-
-bool CallLogViewer::fetchDate(QDomNode& tr)
-{
-	QDomNode td = tr.firstChildElement();
-	QString index = td.toElement().text();
-
-	td = td.nextSiblingElement();
-	QString number = td.lastChild().nodeValue();
-
-	td = td.nextSiblingElement();
-	QString type = td.lastChild().nodeValue();
-
-	td = td.nextSiblingElement();
-	QString time = td.lastChild().nodeValue();
-
-	td = td.nextSiblingElement();
-	QString duration = td.lastChild().nodeValue();
-
-	td = td.nextSiblingElement();
-	QString address = td.lastChild().nodeValue();
-
-	static int count = 0;
-	count++;
-	QSqlQuery query;
-	QString cmd;
-	QTextStream(&cmd) << "insert into CallLog values('" << number << "', '" << type << "', "
-		<< (int)QDateTime::fromString(time, "yyyy-MM-dd hh:mm:ss").toTime_t() << ", " 
-		<< QTime::fromString(duration, "hh:mm:ss").msecsSinceStartOfDay() << ", '" << address << "');";
-	query.exec(cmd);
-
-	return true;
+	ChartDialog* chartialog = new ChartDialog();
+	chartialog->show();
 }

@@ -9,7 +9,7 @@
 #include "ChartDialog.h"
 
 ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
-	:QDialog(parent, flags)
+	:QMainWindow(parent, flags)
 {
 	ui.setupUi(this);
 
@@ -61,7 +61,7 @@ ChartDialog::~ChartDialog()
 {
 }
 
-void ChartDialog::dateChanged()
+void ChartDialog::slotDateChanged()
 {
 	QDateTime startDate = ui.dateEdit->dateTime();
 	QDateTime endDate = ui.dateEdit_2->dateTime();

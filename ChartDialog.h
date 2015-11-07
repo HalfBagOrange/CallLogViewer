@@ -1,6 +1,7 @@
 #ifndef CHARTDIALOG_H
 #define CHARTDIALOG_H
 
+#include <QMainWindow>
 #include <QDialog>
 #include "ui_ChartDialog.h"
 #include "barchart.h"
@@ -10,7 +11,7 @@
 #include <QSqlError>
 #include <QSqlTableModel>
 
-class ChartDialog : public QDialog
+class ChartDialog : public QMainWindow
 {
 	Q_OBJECT
 public:
@@ -19,7 +20,7 @@ public:
 
 public slots:
 //	void statsButtonClicked();
-void dateChanged();
+	void slotDateChanged();
 
 private:
 	BarChart* m_timeChart;

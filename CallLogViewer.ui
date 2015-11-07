@@ -1,76 +1,59 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>CallLogViewerClass</class>
- <widget class="QMainWindow" name="CallLogViewerClass" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="CallLogViewerClass">
+  <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>600</width>
-	<height>400</height>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
    </rect>
   </property>
-  <property name="sizePolicy" >
-   <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
-	<horstretch>0</horstretch>
-	<verstretch>0</verstretch>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>通讯记录分析器</string>
   </property>
-  <property name="layoutDirection" >
+  <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
-  <property name="animated" >
+  <property name="animated">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="centralWidget" >
-   <layout class="QHBoxLayout" name="horizontalLayout_4" >
-	<item>
-	 <layout class="QVBoxLayout" name="verticalLayout_2" >
-	  <item>
-	   <layout class="QHBoxLayout" name="horizontalLayout_2" >
-		<item>
-		 <spacer name="horizontalSpacer" >
-		  <property name="orientation" >
-		   <enum>Qt::Horizontal</enum>
-		  </property>
-		  <property name="sizeHint" stdset="0" >
-		   <size>
-			<width>108</width>
-			<height>20</height>
-		   </size>
-		  </property>
-		 </spacer>
-		</item>
-		<item>
-		 <widget class="QComboBox" name="comboBox" />
-		</item>
-	   </layout>
-	  </item>
-	  <item>
-	   <widget class="QTableView" name="tableView" />
-	  </item>
-	 </layout>
-	</item>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+      </item>
+      <item>
+       <widget class="QTableView" name="tableView"/>
+      </item>
+     </layout>
+    </item>
    </layout>
    <zorder></zorder>
   </widget>
-  <widget class="QMenuBar" name="menuBar" >
-   <property name="geometry" >
-	<rect>
-	 <x>0</x>
-	 <y>0</y>
-	 <width>600</width>
-	 <height>24</height>
-	</rect>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>23</height>
+    </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusBar" />
  </widget>
- <layoutdefault spacing="6" margin="11" />
+ <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="CallLogViewer.qrc" />
+  <include location="CallLogViewer.qrc"/>
  </resources>
  <connections/>
 </ui>
