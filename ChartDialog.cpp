@@ -8,53 +8,42 @@
 #include <QSqlQuery>
 #include "ChartDialog.h"
 
+
+#include <qwt_plot_curve.h>
+
 ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 	:QMainWindow(parent, flags)
 {
 	ui.setupUi(this);
 
-	/*
-	ui.comboBox_2->insertItem(0, QStringLiteral("天"), "day");
-	ui.comboBox_2->insertItem(0, QStringLiteral("周"), "week");
-	ui.comboBox_2->insertItem(0, QStringLiteral("月"), "month");
-	*/
-
 	m_timeChart = new BarChart(this);
 	m_timeChart->setPlot(ui.qwtPlot);
+	ui.qwtPlot->enableAxis(QwtPlot::xBottom, false);
+	ui.qwtPlot->setAxisTitle(QwtPlot::yLeft, QStringLiteral("通话时间(秒)"));
 
 	m_countChart = new BarChart(this);
 	m_countChart->setPlot(ui.qwtPlot_2);
+	ui.qwtPlot_2->setAxisTitle(QwtPlot::yLeft, QStringLiteral("通话次数(次)"));
 
-	/*
-	m_sqlTableModel = new QSqlTableModel(this);
-	QSqlQuery query;
-	query.exec("SELECT DISTINCT phonenumber FROM CallLog");
-	m_sqlTableModel->setQuery(query);
-	ui.comboBox->setModel(m_sqlTableModel);
-
-	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(statsButtonClicked()));
-	*/
-//	query.exec("SELECT callstarttime FROM CallLog ORDER BY callstarttime");
 	QSqlQuery query;
 
 	query.exec("SELECT MIN(callstarttime) AS callstarttime FROM CallLog");
 	query.first();
-	QVariant min = query.value("callstarttime");
+	QVariant minDate = query.value("callstarttime");
 
 	query.exec("SELECT MAX(callstarttime) AS callstarttime FROM CallLog");
 	query.first();
-	QVariant max = query.value("callstarttime");
+	QVariant maxDate = query.value("callstarttime");
 
 	ui.dateEdit->setCalendarPopup(true);
-	ui.dateEdit->setDate(QDateTime::fromTime_t(min.toUInt()).date());
-//	ui.dateEdit->setDateRange(QDateTime::fromTime_t(min.toUInt()).date(), QDateTime::fromTime_t(max.toUInt()).date());
+	ui.dateEdit->setDate(QDateTime::fromTime_t(minDate.toUInt()).date());
+	ui.dateEdit->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
 
 	ui.dateEdit_2->setCalendarPopup(true);
-	ui.dateEdit_2->setDate(QDateTime::fromTime_t(max.toUInt()).date());
-//	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(min.toUInt()).date(), QDateTime::fromTime_t(max.toUInt()).date());
-
-//	connect(ui.dateEdit, SIGNAL(editingFinished()), this, SLOT(dateTimeChanged()));
-//	connect(ui.dateEdit_2, SIGNAL(editingFinished()), this, SLOT(dateChanged()));
+	ui.dateEdit_2->setDate(QDateTime::fromTime_t(maxDate.toUInt()).date());
+	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
+	
+	slotDateChanged();
 }
 
 ChartDialog::~ChartDialog()
@@ -63,54 +52,39 @@ ChartDialog::~ChartDialog()
 
 void ChartDialog::slotDateChanged()
 {
+	m_timeChart->clear();
+	m_countChart->clear();
+
 	QDateTime startDate = ui.dateEdit->dateTime();
 	QDateTime endDate = ui.dateEdit_2->dateTime();
 
 	QString cmd;
 	QTextStream(&cmd) << "SELECT DISTINCT phonenumber FROM CallLog WHERE callstarttime >= "
-		<< startDate.toTime_t() << " AND callstarttime < " << startDate.addDays(1).toTime_t();
+		<< startDate.toTime_t() << " AND callstarttime < " << endDate.toTime_t();
 
 	QSqlQuery queryPhoneNumber(cmd);
 	while (queryPhoneNumber.next())
 	{
 		QString phoneNumber = queryPhoneNumber.value("phonenumber").toString();
 
+		cmd.clear();
 		QTextStream(&cmd) << "SELECT * FROM CallLog WHERE callstarttime >= "
 			<< startDate.toTime_t() << " AND callstarttime < " << endDate.toTime_t()
 			<< " AND phonenumber = " << phoneNumber;
 
 		QSqlQuery queryCallLog(cmd);
-		int count = queryCallLog.size();
+		int count = 0;
 		int time = 0;
 		while (queryCallLog.next())
 		{
-			time += queryCallLog.value("callduration").toInt();
+			count++;
+			time += queryCallLog.value("callduration").toInt()/1000;
 		}
-	}
-}
 
-/*
-void ChartDialog::statsButtonClicked()
-{
-	QString number = ui.comboBox->currentText();
-	QDateTime startDate = ui.dateEdit->dateTime();
-	QDateTime endDate = ui.dateEdit_2->dateTime();
-	QVariant type = ui.comboBox_2->currentData();
-
-	m_barChart->clear();
-	for (; startDate <= endDate; startDate = startDate.addDays(1))
-	{
-		QString cmd;
-		QTextStream(&cmd) << "SELECT * FROM CallLog WHERE callstarttime >= "
-			<< startDate.toTime_t() << " AND callstarttime < " << startDate.addDays(1).toTime_t()
-		<< " AND phonenumber = " << number;
-		QSqlQuery query(cmd);
-		query.last();
-		int count = query.at() + 1;
-
-		m_barChart->addBar(startDate.toString("yy/MM/dd"), Qt::blue, count > 0 ? count : 0);
+		m_timeChart->addBar(phoneNumber, Qt::blue, time);
+		m_countChart->addBar(phoneNumber, Qt::blue, count);
 	}
 
-	m_barChart->replot();
+	m_timeChart->replot();
+	m_countChart->replot();
 }
-*/

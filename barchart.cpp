@@ -21,17 +21,19 @@ public:
     {
         setTickLength( QwtScaleDiv::MinorTick, 0 );
         setTickLength( QwtScaleDiv::MediumTick, 0 );
-        setTickLength( QwtScaleDiv::MajorTick, 2 );
+        setTickLength( QwtScaleDiv::MajorTick, 0 );
 
         enableComponent( QwtScaleDraw::Backbone, false );
+//		enableComponent( QwtScaleDraw::Ticks, false );
+//		enableComponent(QwtScaleDraw::Labels, false);
 
         if ( orientation == Qt::Vertical )
         {
-//            setLabelRotation( -60.0 );
+            setLabelRotation( -90.0 );
         }
         else
         {
-            setLabelRotation( -20.0 );
+            setLabelRotation( 0.0 );
         }
 
         setLabelAlignment(Qt::AlignVCenter );
@@ -40,13 +42,11 @@ public:
     virtual QwtText label( double value ) const
     {
         QwtText lbl;
-
         const int index = qRound( value );
 		if ((value == (double)index) && index >= 0 && index < m_labels.size())
         {
             lbl = m_labels[ index ];
         }
-            
         return lbl;
     }
 
@@ -70,12 +70,12 @@ public:
     DistroChartItem()
         //:QwtPlotBarChart( "Page Hits" )
     {
-		setLegendMode(QwtPlotBarChart::LegendChartTitle);
+		setLegendMode(QwtPlotBarChart::LegendBarTitles);
         //setLegendIconSize( QSize( 10, 14 ) );
 		setLegendIconSize(QSize(0, 0));
         setLayoutPolicy( AutoAdjustSamples );
         setLayoutHint( 2.0 ); // minimum width for a single bar
-        setSpacing( 10 ); // spacing between bars
+        setSpacing( 0 ); // spacing between bars
     }
 
 	void addItem(const QString &distro, const QColor &color, const double &sample)
@@ -157,12 +157,10 @@ void BarChart::setPlot(QwtPlot* plot)
 	canvas->setPalette(canvasPalette);
 	m_plot->setCanvas(canvas);
 
-	//QVector< double > samples;
 	m_barChartItem = new DistroChartItem();
-    //m_barChartItem->setSamples( samples );
     m_barChartItem->attach( m_plot );
 
-    m_plot->insertLegend( new QwtLegend() );
+//    m_plot->insertLegend( new QwtLegend() );
 
     setOrientation( 0 );
     m_plot->setAutoReplot( false );
@@ -182,14 +180,15 @@ void BarChart::setOrientation( int o )
     m_barChartItem->setOrientation( orientation );
 
 //    m_plot->setAxisTitle( axis1, "Distros" );
-	m_plot->setAxisMaxMinor(axis1, 0);
+//	m_plot->setAxisMaxMinor(axis1, 0);
 	m_barScaleX = new DistroScaleDraw(orientation);
 
 	{
 //	QwtScaleDraw *scaleDraw = new QwtScaleDraw();
-	m_plot->setAxisMaxMajor(axis1, 31);
-	m_barScaleX->setTickLength(QwtScaleDiv::MediumTick, 4);
+	m_plot->setAxisMaxMajor(axis1, 1);
+//	m_barScaleX->setTickLength(QwtScaleDiv::MediumTick, 4);
 	m_plot->setAxisScaleDraw(axis1, m_barScaleX);
+//	m_plot->enableAxis(QwtPlot::xBottom, false);
 	}
 //    m_plot->setAxisTitle( axis2, "Hits per day ( HPD )" );
 	m_plot->setAxisMaxMinor(axis2, 3);
@@ -198,6 +197,7 @@ void BarChart::setOrientation( int o )
     QwtScaleDraw *scaleDraw = new QwtScaleDraw();
     scaleDraw->setTickLength( QwtScaleDiv::MediumTick, 4 );
     m_plot->setAxisScaleDraw( axis2, scaleDraw );
+	//m_plot->setAxisTitle(axis2, QStringLiteral("通话时间(秒)"));
 	}
 
     m_plot->plotLayout()->setCanvasMargin( 0 );
@@ -230,3 +230,5 @@ void BarChart::exportChart(const QString &filename)
     QwtPlotRenderer renderer;
 	renderer.exportTo(m_plot, filename);
 }
+
+
