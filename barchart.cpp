@@ -19,33 +19,27 @@ class DistroScaleDraw: public QwtScaleDraw
 public:
     DistroScaleDraw( Qt::Orientation orientation)
     {
-        setTickLength( QwtScaleDiv::MinorTick, 0 );
-        setTickLength( QwtScaleDiv::MediumTick, 0 );
-        setTickLength( QwtScaleDiv::MajorTick, 0 );
+//        setTickLength( QwtScaleDiv::MinorTick, 0 );
+//        setTickLength( QwtScaleDiv::MediumTick, 0 );
+//        setTickLength( QwtScaleDiv::MajorTick, 4 );
 
         enableComponent( QwtScaleDraw::Backbone, false );
-//		enableComponent( QwtScaleDraw::Ticks, false );
+		enableComponent( QwtScaleDraw::Ticks, false );
 //		enableComponent(QwtScaleDraw::Labels, false);
 
-        if ( orientation == Qt::Vertical )
-        {
-            setLabelRotation( -90.0 );
-        }
-        else
-        {
-            setLabelRotation( 0.0 );
-        }
-
-        setLabelAlignment(Qt::AlignVCenter );
+		setLabelAlignment(Qt::AlignLeft);
+		setLabelRotation(-90.0);
+		setSpacing(0);
+		
     }
-
     virtual QwtText label( double value ) const
     {
         QwtText lbl;
         const int index = qRound( value );
 		if ((value == (double)index) && index >= 0 && index < m_labels.size())
         {
-            lbl = m_labels[ index ];
+			lbl = QwtText(m_labels[index], QwtText::TeXText);
+			lbl.setLayoutAttribute(QwtText::MinimumLayout);
         }
         return lbl;
     }
@@ -145,7 +139,7 @@ void BarChart::setPlot(QwtPlot* plot)
 	// 设置图标颜色
 	m_plot->setAutoFillBackground(true);
 	m_plot->setAutoReplot(false);
-	m_plot->setPalette(QColor("Linen"));
+	m_plot->setPalette(QColor(255, 0, 0));//(QColor("Linen"));
 
 	// 设置画布
 	QwtPlotCanvas* canvas = new QwtPlotCanvas();
@@ -185,7 +179,8 @@ void BarChart::setOrientation( int o )
 
 	{
 //	QwtScaleDraw *scaleDraw = new QwtScaleDraw();
-	m_plot->setAxisMaxMajor(axis1, 1);
+//	m_plot->setAxisMaxMajor(axis1, 1);
+		m_plot->setAxisMaxMajor(axis1, 0);
 //	m_barScaleX->setTickLength(QwtScaleDiv::MediumTick, 4);
 	m_plot->setAxisScaleDraw(axis1, m_barScaleX);
 //	m_plot->enableAxis(QwtPlot::xBottom, false);

@@ -16,14 +16,25 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 {
 	ui.setupUi(this);
 
+
+	QwtText axisTitle;
+	QFont axisTitleFont;
+	axisTitleFont.setPixelSize(16);
+
+	axisTitle.setText(QStringLiteral("通话时间(秒)"));
+	axisTitle.setFont(axisTitleFont);
+
 	m_timeChart = new BarChart(this);
 	m_timeChart->setPlot(ui.qwtPlot);
 	ui.qwtPlot->enableAxis(QwtPlot::xBottom, false);
-	ui.qwtPlot->setAxisTitle(QwtPlot::yLeft, QStringLiteral("通话时间(秒)"));
+	ui.qwtPlot->setAxisTitle(QwtPlot::yLeft, axisTitle);
+
+	axisTitle.setText(QStringLiteral("通话次数(次)"));
+	axisTitle.setFont(axisTitleFont);
 
 	m_countChart = new BarChart(this);
 	m_countChart->setPlot(ui.qwtPlot_2);
-	ui.qwtPlot_2->setAxisTitle(QwtPlot::yLeft, QStringLiteral("通话次数(次)"));
+	ui.qwtPlot_2->setAxisTitle(QwtPlot::yLeft, axisTitle);
 
 	QSqlQuery query;
 
