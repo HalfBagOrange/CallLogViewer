@@ -21,6 +21,8 @@ public:
 public slots:
 //	void statsButtonClicked();
 	void slotDateChanged();
+	void slotImportFromWeb();
+	void slotDateList();
 
 private:
 	BarChart* m_timeChart;

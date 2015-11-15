@@ -40,8 +40,11 @@
 
 #include <QtWidgets>
 #include "mainwindow.h"
-#include "CallLogViewer.h"
-
+#include "ChartDialog.h"
+#include <QSqlDatabase>  
+#include <QSqlQuery>
+#include <QDebug>
+#include <QSqlError>
 static void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
 	QByteArray localMsg = msg.toLocal8Bit();
@@ -122,7 +125,16 @@ int main(int argc, char * argv[])
 //	QUrl url = QUrl(QStringLiteral("https://www.baidu.com"));
 //    MainWindow browser(url);
 //    browser.show();
-	CallLogViewer viewer;
+
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	//	db.setDatabaseName(":memory:");
+	db.setDatabaseName("calllog.db");
+	db.open();
+
+	QSqlQuery query;
+	query.exec("create table CallLog(phonenumber varchar(32), calltype varchar(16), callstarttime int, callduration int, calladdress varchar(128), chargetype varchar(32), localcharge varchar(32), foreignercharge varchar(32), freecharge varchar(32), totalcharge varchar(32), remarks varchar(32))");
+
+	ChartDialog viewer;
 	viewer.show();
     return app.exec();
 }

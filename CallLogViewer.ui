@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>通讯记录分析器</string>
+   <string>通讯记录</string>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -39,16 +39,6 @@
     </item>
    </layout>
    <zorder></zorder>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>600</width>
-     <height>23</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

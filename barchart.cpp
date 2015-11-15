@@ -139,13 +139,13 @@ void BarChart::setPlot(QwtPlot* plot)
 	// 设置图标颜色
 	m_plot->setAutoFillBackground(true);
 	m_plot->setAutoReplot(false);
-	m_plot->setPalette(QColor(255, 0, 0));//(QColor("Linen"));
+	m_plot->setPalette(QColor("Linen"));
 
 	// 设置画布
 	QwtPlotCanvas* canvas = new QwtPlotCanvas();
 	canvas->setLineWidth(2);
 	canvas->setFrameStyle(QFrame::Box | QFrame::Sunken);
-	canvas->setBorderRadius(10);
+	//canvas->setBorderRadius(10);
 	QPalette canvasPalette(QColor("Plum"));
 	canvasPalette.setColor(QPalette::Foreground, QColor("Indigo"));
 	canvas->setPalette(canvasPalette);

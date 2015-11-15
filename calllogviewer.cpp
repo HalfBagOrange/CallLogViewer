@@ -52,26 +52,30 @@ CallLogViewer::CallLogViewer(QWidget *parent, Qt::WindowFlags flags)
 
 	ui.setupUi(this);
 
+	/*
 	QMenu* fileMenu = ui.menuBar->addMenu(QStringLiteral("文件"));
 	QAction* webImportAct = fileMenu->addAction(QStringLiteral("从WEB导入....."));
 	connect(webImportAct, SIGNAL(triggered()), this, SLOT(slotImportFromWeb()));
+	*/
 
 //	QAction* exportAct = fileMenu->addAction(QStringLiteral("导出到文件....."));
 //	connect(exportAct, SIGNAL(triggered()), this, SLOT(slotExportToFile()));
 //	QAction* clearAct = fileMenu->addAction(QStringLiteral("清空数据"));
 //	connect(clearAct, SIGNAL(triggered()), this, SLOT(slotClearData()));
-
+	/*
 	QMenu* toolMenu = ui.menuBar->addMenu(QStringLiteral("工具"));
 	QAction* chartAct = toolMenu->addAction(QStringLiteral("柱状图"));
 	connect(chartAct, SIGNAL(triggered()), this, SLOT(slotChart()));
- 
+	*/
+
+	/*
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 //	db.setDatabaseName(":memory:");
 	db.setDatabaseName("calllog.db");
 
 	QSqlQuery query;
 	query.exec("create table CallLog(phonenumber varchar(32), calltype varchar(16), callstarttime int, callduration int, calladdress varchar(128), chargetype varchar(32), localcharge varchar(32), foreignercharge varchar(32), freecharge varchar(32), totalcharge varchar(32), remarks varchar(32))");
-
+	*/
 	m_sqlTableModel = new QMySqlTableModel(this);
 	ui.tableView->setModel(m_sqlTableModel);
 //	ui.tableView->setColumnWidth(0, 100);

@@ -9,88 +9,90 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>593</height>
+    <width>669</width>
+    <height>953</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>柱状图</string>
+   <string>通话记录分析器</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QwtPlot" name="qwtPlot">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>641</width>
-      <height>271</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-   </widget>
-   <widget class="QSplitter" name="splitter_3">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>10</y>
-      <width>136</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>结束时间</string>
-     </property>
-    </widget>
-    <widget class="QDateEdit" name="dateEdit_2"/>
-   </widget>
-   <widget class="QSplitter" name="splitter_2">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>10</y>
-      <width>141</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>起始时间</string>
-     </property>
-    </widget>
-    <widget class="QDateEdit" name="dateEdit"/>
-   </widget>
-   <widget class="QwtPlot" name="qwtPlot_2">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>330</y>
-      <width>641</width>
-      <height>201</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="textBrowser">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>50</y>
-      <width>161</width>
-      <height>261</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>起始时间</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="dateEdit"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>结束时间</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="dateEdit_2"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>分析</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QwtPlot" name="qwtPlot">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QwtPlot" name="qwtPlot_2"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>669</width>
+     <height>23</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <customwidgets>

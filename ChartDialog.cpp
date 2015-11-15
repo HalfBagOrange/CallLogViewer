@@ -8,6 +8,8 @@
 #include <QSqlQuery>
 #include "ChartDialog.h"
 
+#include "mainwindow.h"
+#include "CallLogViewer.h"
 
 #include <qwt_plot_curve.h>
 
@@ -16,6 +18,15 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 {
 	ui.setupUi(this);
 
+	setWindowState(Qt::WindowMaximized);
+
+	QMenu* fileMenu = ui.menuBar->addMenu(QStringLiteral("文件"));
+	QAction* webImportAct = fileMenu->addAction(QStringLiteral("从WEB导入....."));
+	connect(webImportAct, SIGNAL(triggered()), this, SLOT(slotImportFromWeb()));
+
+	QMenu* toolMenu = ui.menuBar->addMenu(QStringLiteral("工具"));
+	QAction* chartAct = toolMenu->addAction(QStringLiteral("数据列表"));
+	connect(chartAct, SIGNAL(triggered()), this, SLOT(slotDateList()));
 
 	QwtText axisTitle;
 	QFont axisTitleFont;
@@ -54,11 +65,27 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 	ui.dateEdit_2->setDate(QDateTime::fromTime_t(maxDate.toUInt()).date());
 	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
 	
+	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(slotDateChanged()));
 	slotDateChanged();
 }
 
 ChartDialog::~ChartDialog()
 {
+}
+
+void ChartDialog::slotDateList()
+{
+	CallLogViewer* viewer = new CallLogViewer();
+	viewer->show();
+}
+
+void ChartDialog::slotImportFromWeb()
+{
+	QUrl url = QUrl(QStringLiteral("http://www.189.cn/"));
+	MainWindow* browser = new MainWindow(url);
+
+	connect(browser, SIGNAL(sqlDatachanged()), this, SLOT(updateSqlModel()));
+	browser->show();
 }
 
 void ChartDialog::slotDateChanged()
@@ -71,7 +98,7 @@ void ChartDialog::slotDateChanged()
 
 	QString cmd;
 	QTextStream(&cmd) << "SELECT DISTINCT phonenumber FROM CallLog WHERE callstarttime >= "
-		<< startDate.toTime_t() << " AND callstarttime < " << endDate.toTime_t();
+		<< startDate.toTime_t() << " AND callstarttime < " << endDate.addDays(1).toTime_t();
 
 	QSqlQuery queryPhoneNumber(cmd);
 	while (queryPhoneNumber.next())
@@ -80,7 +107,7 @@ void ChartDialog::slotDateChanged()
 
 		cmd.clear();
 		QTextStream(&cmd) << "SELECT * FROM CallLog WHERE callstarttime >= "
-			<< startDate.toTime_t() << " AND callstarttime < " << endDate.toTime_t()
+			<< startDate.toTime_t() << " AND callstarttime < " << endDate.addDays(1).toTime_t()
 			<< " AND phonenumber = " << phoneNumber;
 
 		QSqlQuery queryCallLog(cmd);
