@@ -48,7 +48,7 @@ protected:
 CallLogViewer::CallLogViewer(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags)
 {
-	setWindowState(Qt::WindowMaximized);
+//	setWindowState(Qt::WindowMaximized);
 
 	ui.setupUi(this);
 
@@ -81,7 +81,19 @@ CallLogViewer::CallLogViewer(QWidget *parent, Qt::WindowFlags flags)
 //	ui.tableView->setColumnWidth(0, 100);
 //	ui.tableView->setColumnWidth(2, 300);
 
+	m_comSqlModel = new QSqlQueryModel(this);
+	ui.comboBox->setModel(m_comSqlModel);
+	
+	connect(ui.comboBox, SIGNAL(activated(const QString &)), this, SLOT(slotPhoneNumberChanged(const QString &)));
+
 	slotUpdateSqlModel();
+}
+
+void CallLogViewer::slotPhoneNumberChanged(const QString & text)
+{
+	QString cmd;
+	QTextStream(&cmd) << "phonenumber = " << text;
+	m_sqlTableModel->setFilter(cmd);
 }
 
 void CallLogViewer::slotUpdateSqlModel(void)
@@ -101,6 +113,10 @@ void CallLogViewer::slotUpdateSqlModel(void)
 	m_sqlTableModel->setHeaderData(8, Qt::Horizontal, QVariant(QStringLiteral("减免")));
 	m_sqlTableModel->setHeaderData(9, Qt::Horizontal, QVariant(QStringLiteral("费用小计")));
 	m_sqlTableModel->setHeaderData(10, Qt::Horizontal, QVariant(QStringLiteral("备注")));
+
+	QSqlQuery query;
+	query.exec("SELECT DISTINCT phonenumber FROM CallLog");
+	m_comSqlModel->setQuery(query);
 }
 
 CallLogViewer::~CallLogViewer()

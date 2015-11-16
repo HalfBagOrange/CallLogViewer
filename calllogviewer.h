@@ -22,10 +22,12 @@ public slots:
 	void slotImportFromWeb();
 	void slotExportToFile();
 	void slotUpdateSqlModel();
+	void slotPhoneNumberChanged(const QString & text);
 
 private:
 	Ui::CallLogViewerClass ui;
 	QMySqlTableModel* m_sqlTableModel;
+	QSqlQueryModel* m_comSqlModel;
 };
 
 #endif // CALLLOGVIEWER_H

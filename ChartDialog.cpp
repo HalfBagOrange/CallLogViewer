@@ -18,7 +18,7 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 {
 	ui.setupUi(this);
 
-	setWindowState(Qt::WindowMaximized);
+//	setWindowState(Qt::WindowMaximized);
 
 	QMenu* fileMenu = ui.menuBar->addMenu(QStringLiteral("文件"));
 	QAction* webImportAct = fileMenu->addAction(QStringLiteral("从WEB导入....."));
