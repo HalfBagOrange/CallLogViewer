@@ -38,70 +38,24 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calllogviewer.cpp">
+    <ClCompile Include="CallLogChart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_calllogviewer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_calllogviewer.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_calllogviewer.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_CallLogChart.cpp">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="barchart.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_barchart.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_barchart.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="ChartDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ChartDialog.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ChartDialog.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_mainwindow.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mainwindow.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="calllogviewer.h">
+    <CustomBuild Include="CallLogChart.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="calllogviewer.ui">
+    <CustomBuild Include="CallLogChart.ui">
       <Filter>UI</Filter>
     </CustomBuild>
-    <CustomBuild Include="calllogviewer.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="barchart.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ChartDialog.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ChartDialog.ui">
-      <Filter>UI</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GeneratedFiles\ui_calllogviewer.h">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_CallLogChart.h">
       <Filter>Generated Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GeneratedFiles\ui_ChartDialog.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mainwindow.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
+    </ClInclude>
   </ItemGroup>
 </Project>

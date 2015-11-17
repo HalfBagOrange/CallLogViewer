@@ -177,6 +177,7 @@ void BarChart::setOrientation( int o )
 //	m_plot->setAxisMaxMinor(axis1, 0);
 	m_barScaleX = new DistroScaleDraw(orientation);
 
+	m_barScaleX->setLength(80);
 	{
 //	QwtScaleDraw *scaleDraw = new QwtScaleDraw();
 //	m_plot->setAxisMaxMajor(axis1, 1);
@@ -196,7 +197,7 @@ void BarChart::setOrientation( int o )
 	}
 
     m_plot->plotLayout()->setCanvasMargin( 0 );
-    m_plot->replot();
+//    m_plot->replot();
 }
 
 void BarChart::addBar(const QString &distro, const QColor &color, double const& data)
