@@ -7,7 +7,9 @@
 #include <qwt_scale_draw.h>
 #include <qwt_plot_curve.h>
 #include <QSqlQuery>
+
 #include "CallLogChart.h"
+#include "CallLogTable.h"
 
 class XScaleDraw : QwtScaleDraw
 {
@@ -222,6 +224,8 @@ void CallLogChart::slotCallLogChanged()
 
 void CallLogChart::slotCallLogTable()
 {
+	CallLogTable* callLogTable = new CallLogTable();
+	callLogTable->show();
 }
 
 void CallLogChart::slotImportFromWeb()

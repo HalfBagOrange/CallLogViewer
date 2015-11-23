@@ -1,33 +1,31 @@
-#ifndef CALLLOGVIEWER_H
-#define CALLLOGVIEWER_H
+#ifndef CALL_LOG_TABLE_H
+#define CALL_LOG_TABLE_H
 
 #include <QMainWindow>
-#include <QDomElement>
 #include <QSqlTableModel>
-#include "ui_CallLogViewer.h"
+#include <QSqlQueryModel>
 
-class QMySqlTableModel;
+#include "ui_CallLogTable.h"
 
-class CallLogViewer : public QMainWindow
+class CallLogTableModel;
+
+class CallLogTable : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	CallLogViewer(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-	~CallLogViewer();
+	CallLogTable(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+	~CallLogTable();
 
 public slots:
-	void slotChart();
-	void slotClearData();
-	void slotImportFromWeb();
-	void slotExportToFile();
-	void slotUpdateSqlModel();
+	void slotCallLogChanged();
 	void slotPhoneNumberChanged(const QString & text);
 
 private:
-	Ui::CallLogViewerClass ui;
-	QMySqlTableModel* m_sqlTableModel;
-	QSqlQueryModel* m_comSqlModel;
+	Ui::CallLogTable ui;
+
+	CallLogTableModel* m_callLogModel;
+	QSqlQueryModel* m_phoneNumberModel;
 };
 
 #endif // CALLLOGVIEWER_H
