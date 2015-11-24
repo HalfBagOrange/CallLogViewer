@@ -41,17 +41,22 @@ static void myMessageOutput(QtMsgType type, const QMessageLogContext &context, c
 	logFile.close();
 }
 
-int main(int argc, char * argv[])
+static void initDatabase()
 {
-	qInstallMessageHandler(myMessageOutput);
-    QApplication app(argc, argv);
-
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	//db.setDatabaseName(":memory:");
 	db.setDatabaseName("calllog.db");
 	db.open();
 	QSqlQuery query;
 	query.exec("create table CallLog(phonenumber varchar(32), calltype varchar(16), callstarttime int, callduration int, calladdress varchar(128), chargetype varchar(32), localcharge varchar(32), foreignercharge varchar(32), freecharge varchar(32), totalcharge varchar(32), remarks varchar(32))");
+}
+
+int main(int argc, char * argv[])
+{
+	qInstallMessageHandler(myMessageOutput);
+    QApplication app(argc, argv);
+
+	initDatabase();
 
 	CallLogChart chart;
 	chart.show();
