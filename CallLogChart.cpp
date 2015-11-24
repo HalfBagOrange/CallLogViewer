@@ -10,6 +10,7 @@
 
 #include "CallLogChart.h"
 #include "CallLogTable.h"
+#include "CallLogBrowser.h"
 
 class XScaleDraw : QwtScaleDraw
 {
@@ -230,6 +231,8 @@ void CallLogChart::slotCallLogTable()
 
 void CallLogChart::slotImportFromWeb()
 {
+	CallLogBrowser* callLogBrowser = new CallLogBrowser();
+	callLogBrowser->show();
 }
 
 void CallLogChart::slotDateTimeChanged()

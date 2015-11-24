@@ -50,6 +50,12 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_CallLogTable.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="CallLogBrowser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CallLogBrowser.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="CallLogChart.h">
@@ -64,12 +70,21 @@
     <CustomBuild Include="CallLogTable.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="CallLogBrowser.ui">
+      <Filter>UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CallLogBrowser.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_CallLogChart.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_CallLogTable.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_CallLogBrowser.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
