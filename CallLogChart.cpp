@@ -231,7 +231,7 @@ void CallLogChart::slotCallLogTable()
 
 void CallLogChart::slotImportFromWeb()
 {
-	CallLogBrowser* callLogBrowser = new CallLogBrowser();
+	CallLogBrowser* callLogBrowser = new CallLogBrowser(this, Qt::CustomizeWindowHint);
 	callLogBrowser->show();
 }
 

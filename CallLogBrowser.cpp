@@ -4,6 +4,7 @@ CallLogBrowser::CallLogBrowser(QWidget * parent/* = 0*/, Qt::WindowFlags flags/*
 	:QMainWindow(parent, flags)
 {
 	ui.setupUi(this);
+
 }
 
 CallLogBrowser::~CallLogBrowser()
