@@ -252,6 +252,7 @@ void MainWindow::fetchCallLogFromTeleDetall(QWebElement& table)
 {
 	QWebElement & tbody = table.findFirst("tbody");
 
+	int count = 0;
 	QWebElementCollection & trCollection = tbody.findAll("tr");
 	int trCount = trCollection.count();
 	for (int trIndex = 0; trIndex < trCount; trIndex++)
@@ -282,23 +283,23 @@ void MainWindow::fetchCallLogFromTeleDetall(QWebElement& table)
 			<TD class=tl>通话所在LAC</TD>
 			<TD class=tl>通话所在CELLID</TD>
 			*/
-			QString index = tdCollection[0].toPlainText();
-			QString startTime = tdCollection[1].toPlainText();			
-			QString callDuration = tdCollection[2].toPlainText();
-			QString callStatus = tdCollection[3].toPlainText();
-			QString callType = tdCollection[4].toPlainText();
-			QString callNumber = tdCollection[5].toPlainText();
-			QString callNumberType = tdCollection[6].toPlainText();
-			QString callLocation = tdCollection[7].toPlainText();
-			QString businessName = tdCollection[8].toPlainText();
-			QString localBasicFees = tdCollection[9].toPlainText();
-			QString longDistanceFees = tdCollection[10].toPlainText();
-			QString informationFees = tdCollection[11].toPlainText();
-			QString totalFees = tdCollection[12].toPlainText();
-			QString discountItems = tdCollection[13].toPlainText();
-			QString otherCallLocation = tdCollection[14].toPlainText();
-			QString callInLac = tdCollection[15].toPlainText();
-			QString callInCellid = tdCollection[16].toPlainText();
+			QString index = tdCollection[0].toPlainText().trimmed();
+			QString startTime = tdCollection[1].toPlainText().trimmed();
+			QString callDuration = tdCollection[2].toPlainText().trimmed();
+			QString callStatus = tdCollection[3].toPlainText().trimmed();
+			QString callType = tdCollection[4].toPlainText().trimmed();
+			QString callNumber = tdCollection[5].toPlainText().trimmed();
+			QString callNumberType = tdCollection[6].toPlainText().trimmed();
+			QString callLocation = tdCollection[7].toPlainText().trimmed();
+			QString businessName = tdCollection[8].toPlainText().trimmed();
+			QString localBasicFees = tdCollection[9].toPlainText().trimmed();
+			QString longDistanceFees = tdCollection[10].toPlainText().trimmed();
+			QString informationFees = tdCollection[11].toPlainText().trimmed();
+			QString totalFees = tdCollection[12].toPlainText().trimmed();
+			QString discountItems = tdCollection[13].toPlainText().trimmed();
+			QString otherCallLocation = tdCollection[14].toPlainText().trimmed();
+			QString callInLac = tdCollection[15].toPlainText().trimmed();
+			QString callInCellid = tdCollection[16].toPlainText().trimmed();
 
 			int hourPos = callDuration.indexOf("时");
 			int minutePos = callDuration.indexOf("分");
@@ -323,20 +324,33 @@ void MainWindow::fetchCallLogFromTeleDetall(QWebElement& table)
 
 			QTime duration(hour.toUInt(), minute.toUInt(), second.toUInt());
 
+			/*
+			int size = startTime.size();
+			startTime.resize(strlen("yyyy-MM-dd hh:mm:ss"));
+			int size1 = startTime.size();
+			QDateTime strtime = QDateTime::fromString(startTime, "yyyy-MM-dd hh:mm:ss");
+			*/
 			QSqlQuery query;
 			QString cmd;
 			QTextStream(&cmd) << "insert into CallLog values("
-				<< (int)QDateTime::fromString(startTime, "yyyy-MM-dd hh:mm:ss").toTime_t()
-				<< ", " << duration.msecsSinceStartOfDay()
+				<< " '" << callNumber << "'"
 				<< ", '" << callType << "'"
-				<< ", '" << callNumber << "'"
+				<< ", "<< (int)QDateTime::fromString(startTime, "yyyy-MM-dd hh:mm:ss").toTime_t()
+				<< ", " << duration.msecsSinceStartOfDay()
 				<< ", '" << callLocation << "'"
 				<< ", '" << otherCallLocation << "'"
 				<< ", '" << callInLac << "'"
 				<< ", '" << callInCellid << "'"
 				<< ")";
 			query.exec(cmd);
+			count++;
 	}
+
+	QString info;
+	QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");
+	QMessageBox::about(this, QStringLiteral("信息"), info);
+
+	emit sqlDatachanged();
 }
 
 // G:\CallLogViewer\清单查询详情-产品专区-中国电信网上营业厅·浙江5.html

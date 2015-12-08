@@ -49,13 +49,13 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 
 	QSqlQuery query;
 
-	query.exec("SELECT MIN(callstarttime) AS callstarttime FROM CallLog");
+	query.exec("SELECT MIN(starttime) AS starttime FROM CallLog");
 	query.first();
-	QVariant minDate = query.value("callstarttime");
+	QVariant minDate = query.value("starttime");
 
-	query.exec("SELECT MAX(callstarttime) AS callstarttime FROM CallLog");
+	query.exec("SELECT MAX(starttime) AS starttime FROM CallLog");
 	query.first();
-	QVariant maxDate = query.value("callstarttime");
+	QVariant maxDate = query.value("starttime");
 
 	ui.dateEdit->setCalendarPopup(true);
 	ui.dateEdit->setDate(QDateTime::fromTime_t(minDate.toUInt()).date());
@@ -97,18 +97,18 @@ void ChartDialog::slotDateChanged()
 	QDateTime endDate = ui.dateEdit_2->dateTime();
 
 	QString cmd;
-	QTextStream(&cmd) << "SELECT DISTINCT phonenumber FROM CallLog WHERE callstarttime >= "
-		<< startDate.toTime_t() << " AND callstarttime < " << endDate.addDays(1).toTime_t();
+	QTextStream(&cmd) << "SELECT DISTINCT callnumber FROM CallLog WHERE starttime >= "
+		<< startDate.toTime_t() << " AND starttime < " << endDate.addDays(1).toTime_t();
 
 	QSqlQuery queryPhoneNumber(cmd);
 	while (queryPhoneNumber.next())
 	{
-		QString phoneNumber = queryPhoneNumber.value("phonenumber").toString();
+		QString phoneNumber = queryPhoneNumber.value("callnumber").toString();
 
 		cmd.clear();
-		QTextStream(&cmd) << "SELECT * FROM CallLog WHERE callstarttime >= "
-			<< startDate.toTime_t() << " AND callstarttime < " << endDate.addDays(1).toTime_t()
-			<< " AND phonenumber = " << phoneNumber;
+		QTextStream(&cmd) << "SELECT * FROM CallLog WHERE starttime >= "
+			<< startDate.toTime_t() << " AND starttime < " << endDate.addDays(1).toTime_t()
+			<< " AND callnumber = " << phoneNumber;
 
 		QSqlQuery queryCallLog(cmd);
 		int count = 0;
@@ -116,7 +116,7 @@ void ChartDialog::slotDateChanged()
 		while (queryCallLog.next())
 		{
 			count++;
-			time += queryCallLog.value("callduration").toInt()/1000;
+			time += queryCallLog.value("duration").toInt()/1000;
 		}
 
 		m_timeChart->addBar(phoneNumber, Qt::blue, time);

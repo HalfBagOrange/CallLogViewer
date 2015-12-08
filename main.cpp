@@ -132,8 +132,23 @@ int main(int argc, char * argv[])
 	db.open();
 
 	QSqlQuery query;
-	query.exec("create table CallLog(phonenumber varchar(32), calltype varchar(16), callstarttime int, callduration int, calladdress varchar(128), chargetype varchar(32), localcharge varchar(32), foreignercharge varchar(32), freecharge varchar(32), totalcharge varchar(32), remarks varchar(32))");
+	query.exec("create table CallLog(callnumber varchar(32), calltype varchar(16), starttime int, duration int, calllocation varchar(128), otherCallLocation varchar(32), callInLac varchar(32), callInCellid varchar(32))");
 
+	/*
+	QSqlQuery query;
+	QString cmd;
+	QTextStream(&cmd) << "insert into CallLog values("
+	<< ", '" << callNumber << "'"
+	<< ", '" << callType << "'"
+	<< (int)QDateTime::fromString(startTime, "yyyy-MM-dd hh:mm:ss").toTime_t()
+	<< ", " << duration.msecsSinceStartOfDay()
+	<< ", '" << callLocation << "'"
+	<< ", '" << otherCallLocation << "'"
+	<< ", '" << callInLac << "'"
+	<< ", '" << callInCellid << "'"
+	<< ")";
+	query.exec(cmd);
+	*/
 	ChartDialog viewer;
 	viewer.show();
     return app.exec();
