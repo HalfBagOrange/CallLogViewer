@@ -170,19 +170,179 @@ void MainWindow::gotoLinkUrl(const QUrl& url)
     view->load(url);
 }
 
-// G:\CallLogViewer\清单查询详情-产品专区-中国电信网上营业厅·浙江5.html
 void MainWindow::fetchCallLog()
 {
-    qDebug() << "start fatch call log";
+	qDebug() << "start fatch call log";
 
-    QWebFrame* webFrame = view->page()->mainFrame();
-    QWebElement table = webFrame->findFirstElement("#Pzone_details_content_2");
+	QWebFrame* webFrame = view->page()->mainFrame();
 
-    if(table.isNull())
-    {
-        QMessageBox::about(this, QStringLiteral("提示"), QStringLiteral("找不到通话记录表"));
-        return;
-    }
+	if (!webFrame)
+	{
+		return;
+	}
+
+	{
+		QWebElement& table = webFrame->findFirstElement("#Pzone_details_content_2");
+		if (!table.isNull())
+		{
+			fetchCallLogFromTelecom(table);
+			return;
+		}
+	}
+	
+	{
+		QWebElement table = findDetailFromFrame(webFrame);
+		if (!table.isNull())
+		{
+			fetchCallLogFromTeleDetall(table);
+			return;
+		}
+	}
+}
+
+QWebElement& MainWindow::findDetailFromFrame(QWebFrame* webFrame)
+{
+	QWebElementCollection tableCollection = webFrame->findAllElements("table");
+	for (int i = 0; i < tableCollection.count(); i++)
+	{
+		QWebElement table = findDetailFromTable(tableCollection[i]);
+		if (!table.isNull())
+		{
+			return table;
+		}
+	}
+	return QWebElement();
+}
+
+QWebElement& MainWindow::findDetailFromTable(QWebElement& table)
+{
+	QWebElementCollection& tableCollection = table.findAll("table");
+	for (int i = 0; i < tableCollection.count(); i++)
+	{
+		QWebElement table1 = findDetailFromTable(tableCollection[i]);
+		if (!table1.isNull())
+		{
+			return table1;
+		}
+	}
+
+	QWebElement & tbody = table.findFirst("tbody");
+	if (tbody.isNull())
+	{
+		return QWebElement();
+	}
+
+	QWebElementCollection & trCollection = tbody.findAll("tr");
+	if (0 == trCollection.count())
+	{
+		return QWebElement();
+	}
+
+	QWebElement & tr = trCollection[0];
+	QWebElementCollection & tdCollection = tr.findAll("td");
+	if (17 != tdCollection.count())
+	{
+		return QWebElement();
+	}
+
+	return table;
+}
+
+void MainWindow::fetchCallLogFromTeleDetall(QWebElement& table)
+{
+	QWebElement & tbody = table.findFirst("tbody");
+
+	QWebElementCollection & trCollection = tbody.findAll("tr");
+	int trCount = trCollection.count();
+	for (int trIndex = 0; trIndex < trCount; trIndex++)
+	{
+		QWebElement & tr = trCollection[trIndex];
+		if (tr.classes()[0] == "listtitle")
+		{
+			continue;
+		}
+
+		QWebElementCollection & tdCollection = tr.findAll("td");
+			/*
+			<TD class=tl>序号</TD>
+			<TD class=tl>起始时间</TD>
+			<TD class=tl>通话时长</TD>
+			<TD class=tl>通话状态</TD>
+			<TD class=tl>通话类型</TD>
+			<TD class=tl>对方号码</TD>
+			<TD class=tl>对方号码类型</TD>
+			<TD class=tl>通话地</TD>
+			<TD class=tl>业务名称</TD>
+			<TD class=tl>本地基本费/漫游费</TD>
+			<TD class=tl>长途费</TD>
+			<TD class=tl>信息费</TD>
+			<TD class=tl>费用小计</TD>
+			<TD class=tl>优惠项</TD>
+			<TD class=tl>对方通话所在地</TD>
+			<TD class=tl>通话所在LAC</TD>
+			<TD class=tl>通话所在CELLID</TD>
+			*/
+			QString index = tdCollection[0].toPlainText();
+			QString startTime = tdCollection[1].toPlainText();			
+			QString callDuration = tdCollection[2].toPlainText();
+			QString callStatus = tdCollection[3].toPlainText();
+			QString callType = tdCollection[4].toPlainText();
+			QString callNumber = tdCollection[5].toPlainText();
+			QString callNumberType = tdCollection[6].toPlainText();
+			QString callLocation = tdCollection[7].toPlainText();
+			QString businessName = tdCollection[8].toPlainText();
+			QString localBasicFees = tdCollection[9].toPlainText();
+			QString longDistanceFees = tdCollection[10].toPlainText();
+			QString informationFees = tdCollection[11].toPlainText();
+			QString totalFees = tdCollection[12].toPlainText();
+			QString discountItems = tdCollection[13].toPlainText();
+			QString otherCallLocation = tdCollection[14].toPlainText();
+			QString callInLac = tdCollection[15].toPlainText();
+			QString callInCellid = tdCollection[16].toPlainText();
+
+			int hourPos = callDuration.indexOf("时");
+			int minutePos = callDuration.indexOf("分");
+			int secondPos = callDuration.indexOf(QStringLiteral("秒"));
+			QString hour;
+			QString minute;
+			QString second;
+			if (callDuration.contains(QStringLiteral("时")))
+			{
+				hour = callDuration.section(QStringLiteral("时"), 0, 0);
+				callDuration = callDuration.section(QStringLiteral("时"), 1);
+			}
+			if (callDuration.contains(QStringLiteral("分")))
+			{
+				minute = callDuration.section(QStringLiteral("分"), 0, 0);
+				callDuration = callDuration.section(QStringLiteral("分"), 1);
+			}
+			if (callDuration.contains(QStringLiteral("秒")))
+			{
+				second = callDuration.section(QStringLiteral("秒"), 0, 0);
+			}
+
+			QTime duration(hour.toUInt(), minute.toUInt(), second.toUInt());
+
+			QSqlQuery query;
+			QString cmd;
+			QTextStream(&cmd) << "insert into CallLog values("
+				<< (int)QDateTime::fromString(startTime, "yyyy-MM-dd hh:mm:ss").toTime_t()
+				<< ", " << duration.msecsSinceStartOfDay()
+				<< ", '" << callType << "'"
+				<< ", '" << callNumber << "'"
+				<< ", '" << callLocation << "'"
+				<< ", '" << otherCallLocation << "'"
+				<< ", '" << callInLac << "'"
+				<< ", '" << callInCellid << "'"
+				<< ")";
+			query.exec(cmd);
+	}
+}
+
+// G:\CallLogViewer\清单查询详情-产品专区-中国电信网上营业厅·浙江5.html
+void MainWindow::fetchCallLogFromTelecom(QWebElement& table)
+{
+    qDebug() << "start fatch call log of chinese telecom";
 
 	if (m_firtOpen && 
 		(QMessageBox::Yes == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否删除原先的数据"))))

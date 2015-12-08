@@ -42,7 +42,7 @@
 #define MAIN_WINDOW_H
 
 #include <QtWidgets>
-
+#include <QWebElement>
 //class QWebView;
 //QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -82,6 +82,10 @@ protected slots:
     void fetchCallLog();
     void callLogTable();
 
+	QWebElement & findDetailFromFrame(QWebFrame* webFrame);
+	QWebElement & findDetailFromTable(QWebElement& table);
+	void fetchCallLogFromTelecom(QWebElement& table);
+	void fetchCallLogFromTeleDetall(QWebElement& table);
 private:
     QString jQuery;
     WebView *view;
