@@ -198,6 +198,8 @@ void MainWindow::fetchCallLog()
 			return;
 		}
 	}
+
+	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("提取通话记录失败！"));
 }
 
 QWebElement& MainWindow::findDetailFromFrame(QWebFrame* webFrame)
@@ -250,6 +252,10 @@ QWebElement& MainWindow::findDetailFromTable(QWebElement& table)
 
 void MainWindow::fetchCallLogFromTeleDetall(QWebElement& table)
 {
+	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待...."));
+//	setDisabled(true);
+
+
 	QWebElement & tbody = table.findFirst("tbody");
 
 	int count = 0;
@@ -345,6 +351,8 @@ void MainWindow::fetchCallLogFromTeleDetall(QWebElement& table)
 			query.exec(cmd);
 			count++;
 	}
+
+//	setDisabled(false);
 
 	QString info;
 	QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");
