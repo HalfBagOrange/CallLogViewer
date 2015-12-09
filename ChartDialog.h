@@ -23,6 +23,7 @@ public slots:
 	void slotDateChanged();
 	void slotImportFromWeb();
 	void slotDateList();
+	void slotCallLogChanged();
 
 private:
 	BarChart* m_timeChart;

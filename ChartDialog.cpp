@@ -47,26 +47,11 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 	m_countChart->setPlot(ui.qwtPlot_2);
 	ui.qwtPlot_2->setAxisTitle(QwtPlot::yLeft, axisTitle);
 
-	QSqlQuery query;
-
-	query.exec("SELECT MIN(starttime) AS starttime FROM CallLog");
-	query.first();
-	QVariant minDate = query.value("starttime");
-
-	query.exec("SELECT MAX(starttime) AS starttime FROM CallLog");
-	query.first();
-	QVariant maxDate = query.value("starttime");
-
 	ui.dateEdit->setCalendarPopup(true);
-	ui.dateEdit->setDate(QDateTime::fromTime_t(minDate.toUInt()).date());
-	ui.dateEdit->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
-
 	ui.dateEdit_2->setCalendarPopup(true);
-	ui.dateEdit_2->setDate(QDateTime::fromTime_t(maxDate.toUInt()).date());
-	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
-	
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(slotDateChanged()));
-	slotDateChanged();
+
+	slotCallLogChanged();
 }
 
 ChartDialog::~ChartDialog()
@@ -84,8 +69,39 @@ void ChartDialog::slotImportFromWeb()
 	QUrl url = QUrl(QStringLiteral("http://www.189.cn/"));
 	MainWindow* browser = new MainWindow(url);
 
-	connect(browser, SIGNAL(sqlDatachanged()), this, SLOT(updateSqlModel()));
+	connect(browser, SIGNAL(sqlDatachanged()), this, SLOT(slotCallLogChanged()));
 	browser->show();
+}
+
+void ChartDialog::slotCallLogChanged()
+{
+	QSqlQuery query;
+
+	query.exec("SELECT MIN(starttime) AS starttime FROM CallLog");
+	query.first();
+	QVariant minDate = query.value("starttime");
+	if (minDate.toUInt() == 0)
+	{
+		minDate = QDateTime::currentDateTime().toTime_t();
+	}
+
+	query.exec("SELECT MAX(starttime) AS starttime FROM CallLog");
+	query.first();
+	QVariant maxDate = query.value("starttime");
+	if (maxDate.toUInt() == 0)
+	{
+		maxDate = QDateTime::currentDateTime().toTime_t();
+	}
+
+
+	ui.dateEdit->setDate(QDateTime::fromTime_t(minDate.toUInt()).date());
+//	ui.dateEdit->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
+
+	ui.dateEdit_2->setDate(QDateTime::fromTime_t(maxDate.toUInt()).date());
+//	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
+
+
+	slotDateChanged();
 }
 
 void ChartDialog::slotDateChanged()
