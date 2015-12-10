@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>669</width>
-    <height>953</height>
+    <width>716</width>
+    <height>544</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,6 +68,15 @@
     </item>
     <item>
      <widget class="QwtPlot" name="qwtPlot">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
       </property>
@@ -80,7 +89,14 @@
      </widget>
     </item>
     <item>
-     <widget class="QwtPlot" name="qwtPlot_2"/>
+     <widget class="QwtPlot" name="qwtPlot_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -89,7 +105,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>669</width>
+     <width>716</width>
      <height>23</height>
     </rect>
    </property>
