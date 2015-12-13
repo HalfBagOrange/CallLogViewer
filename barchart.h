@@ -2,11 +2,25 @@
 #define _BAR_CHART_H_
 
 #include <qwt_plot.h>
+#include <qwt_plot_layout.h>
 #include <qstringlist.h>
 #include <QDialog>
 
 class DistroChartItem;
 class DistroScaleDraw;
+
+class MyPlotLayout : public QwtPlotLayout
+{
+public:
+	MyPlotLayout() :QwtPlotLayout(){}
+	~MyPlotLayout(){}
+
+public:
+	void mySetScaleRect(int axis, const QRectF &rect)
+	{
+		return setScaleRect(axis, rect);
+	}
+};
 
 class BarChart: public QObject
 {

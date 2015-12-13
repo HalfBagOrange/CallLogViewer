@@ -141,4 +141,45 @@ void ChartDialog::slotDateChanged()
 
 	m_timeChart->replot();
 	m_countChart->replot();
+
+	return;
+//	MyPlotLayout* timeLayout = (MyPlotLayout*)ui.qwtPlot->plotLayout();
+//	MyPlotLayout* countLayout = (MyPlotLayout*)ui.qwtPlot_2->plotLayout();
+
+	QWidget*  timeLayout = ui.qwtPlot->canvas();
+	QWidget*  countLayout = ui.qwtPlot_2->canvas();
+
+
+	QRectF timeYRect = timeLayout->rect();
+	QRectF countYRect = countLayout->rect();
+
+//	QRectF timeYRect = timeLayout->canvasRect();
+//	QRectF countYRect = countLayout->canvasRect();
+
+	int a = timeYRect.x();
+	int a1 = countYRect.x();
+
+	int w = timeYRect.width();
+	int w1 = countYRect.width();
+
+	int m;
+	/*
+	if (timeYRect.width() == countYRect.width())
+	{
+		countYRect.setWidth(10);
+		timeYRect.setWidth(10);
+		countLayout->mySetScaleRect(QwtPlot::yLeft, countYRect);
+		timeLayout->mySetScaleRect(QwtPlot::yLeft, timeYRect);
+	}
+	else if (timeYRect.width() < countYRect.width())
+	{
+		timeYRect.setWidth(countYRect.width());
+		timeLayout->mySetScaleRect(QwtPlot::yLeft, timeYRect);
+	}
+	*/
+//	m_timeChart->replot();
+//	m_countChart->replot();
+
+//	ui.qwtPlot->repaint();
+//	ui.qwtPlot_2->repaint();
 }

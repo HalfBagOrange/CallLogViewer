@@ -58,6 +58,23 @@ private:
     QStringList m_labels;
 };
 
+class YScaleDraw : public QwtScaleDraw
+{
+public:
+	YScaleDraw() :QwtScaleDraw(){}
+	~YScaleDraw(){}
+
+	virtual QwtText label(double value) const
+	{
+		
+		char a[6] = "";
+		qsnprintf(a, 6, "% 5d", (int)value);
+		QString str(a);
+		QwtText lbl(str);
+		return lbl;
+	}
+};
+
 class DistroChartItem: public QwtPlotBarChart
 {
 public:
@@ -157,6 +174,10 @@ void BarChart::setPlot(QwtPlot* plot)
 //    m_plot->insertLegend( new QwtLegend() );
 
     setOrientation( 0 );
+
+	MyPlotLayout* layout = new MyPlotLayout();
+	m_plot->setPlotLayout((QwtPlotLayout*)layout);
+
     m_plot->setAutoReplot( false );
 }
 
@@ -189,7 +210,7 @@ void BarChart::setOrientation( int o )
 	m_plot->setAxisMaxMinor(axis2, 3);
 
 	{
-    QwtScaleDraw *scaleDraw = new QwtScaleDraw();
+		QwtScaleDraw *scaleDraw = (YScaleDraw*)new YScaleDraw();
     scaleDraw->setTickLength( QwtScaleDiv::MediumTick, 4 );
     m_plot->setAxisScaleDraw( axis2, scaleDraw );
 	//m_plot->setAxisTitle(axis2, QStringLiteral("通话时间(秒)"));
