@@ -73,7 +73,7 @@ public :
 
 MainWindow::MainWindow(const QUrl& url)
 {
-    setWindowTitle("CallLogBrowser");
+	setWindowTitle(QStringLiteral("从HTML导入数据"));
     progress = 0;
 
 	m_firtOpen = true;
