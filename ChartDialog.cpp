@@ -18,7 +18,7 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 {
 	ui.setupUi(this);
 
-//	setWindowState(Qt::WindowMaximized);
+	setWindowState(Qt::WindowMaximized);
 
 	QMenu* fileMenu = ui.menuBar->addMenu(QStringLiteral("文件"));
 	QAction* webImportAct = fileMenu->addAction(QStringLiteral("从WEB导入....."));
@@ -66,7 +66,7 @@ void ChartDialog::slotDateList()
 
 void ChartDialog::slotImportFromWeb()
 {
-	QUrl url = QUrl(QStringLiteral("http://www.189.cn/"));
+	QUrl url;// = QUrl(QStringLiteral("http://www.189.cn/"));
 	MainWindow* browser = new MainWindow(url);
 
 	connect(browser, SIGNAL(sqlDatachanged()), this, SLOT(slotCallLogChanged()));

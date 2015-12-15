@@ -45,6 +45,8 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlError>
+#include "LoginDialog/LoginDialog.h"
+
 static void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
 	QByteArray localMsg = msg.toLocal8Bit();
@@ -101,6 +103,14 @@ int main(int argc, char * argv[])
 	qInstallMessageHandler(myMessageOutput);
     QApplication app(argc, argv);
 
+	QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
+
+	LoginDialog loginDialog;
+
+	if (!loginDialog.login())
+	{
+		return 0;
+	}
 	/*
     QCommandLineParser commandLineParser;
     commandLineParser.addPositionalArgument(QStringLiteral("url"),

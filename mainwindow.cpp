@@ -54,6 +54,7 @@ public :
 		:QWebView(parent)
 	{
 		settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
+		settings()->setDefaultTextEncoding("GBK");
 	}
 
 	QWebView *createWindow(QWebPage::WebWindowType type)
@@ -252,9 +253,13 @@ QWebElement& MainWindow::findDetailFromTable(QWebElement& table)
 
 void MainWindow::fetchCallLogFromTeleDetall(QWebElement& table)
 {
-	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待...."));
 //	setDisabled(true);
-
+	if ((QMessageBox::Yes == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否删除原先的数据"))))
+	{
+		QSqlQuery query;
+		query.exec("delete from CallLog");
+	}
+	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待"));
 
 	QWebElement & tbody = table.findFirst("tbody");
 
