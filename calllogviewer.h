@@ -6,7 +6,9 @@
 #include <QSqlTableModel>
 #include "ui_CallLogViewer.h"
 
-class QMySqlTableModel;
+#include "barchart.h"
+
+//class QMySqlTableModel;
 
 class CallLogViewer : public QMainWindow
 {

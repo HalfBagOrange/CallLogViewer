@@ -9,42 +9,6 @@
 #include "mainwindow.h"
 #include "CallLogViewer.h"
 
-class QMySqlTableModel : public QSqlTableModel
-{
-public:
-	QMySqlTableModel(QObject * parent = 0, QSqlDatabase db = QSqlDatabase())
-		:QSqlTableModel(parent, db)
-	{
-	}
-	~QMySqlTableModel()
-	{
-	}
-
-	void mySetPrimaryKey(const QSqlIndex & key)
-	{
-		setPrimaryKey(key);
-	}
-
-protected:
-	QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const
-	{
-		QVariant value = QSqlQueryModel::data(index, role);
-
-		if (value.isValid() && Qt::DisplayRole == role)
-		{
-			if (2 == index.column())
-			{
-				return QVariant(QDateTime::fromTime_t(value.toUInt()).toString("yyyy-MM-dd hh:mm:ss"));
-			}
-			else if (3 == index.column())
-			{
-				return QVariant(QTime::fromMSecsSinceStartOfDay(value.toUInt()).toString("hh:mm:ss"));
-			}
-		}
-		return value;
-	}
-};
-
 CallLogViewer::CallLogViewer(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags)
 {

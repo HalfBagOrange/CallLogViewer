@@ -24,12 +24,15 @@ public slots:
 	void slotImportFromWeb();
 	void slotDateList();
 	void slotCallLogChanged();
+	void slotPhoneNumberChanged(const QString & text);
 
 private:
 	BarChart* m_timeChart;
 	BarChart* m_countChart;
 	Ui::ChartDialog ui;
-	//QSqlQueryModel* m_sqlTableModel;
+
+	QMySqlTableModel* m_sqlTableModel;
+	QSqlQueryModel* m_comSqlModel;
 };
 
 #endif

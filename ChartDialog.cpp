@@ -6,6 +6,7 @@
 #include <qwt_legend.h>
 #include <qwt_scale_draw.h>
 #include <QSqlQuery>
+
 #include "ChartDialog.h"
 
 #include "mainwindow.h"
@@ -51,6 +52,14 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 	ui.dateEdit_2->setCalendarPopup(true);
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(slotDateChanged()));
 
+	m_sqlTableModel = new QMySqlTableModel(this);
+	ui.tableView->setModel(m_sqlTableModel);
+
+	m_comSqlModel = new QSqlQueryModel(this);
+	ui.comboBox->setModel(m_comSqlModel);
+
+	connect(ui.comboBox, SIGNAL(activated(const QString &)), this, SLOT(slotPhoneNumberChanged(const QString &)));
+
 	slotCallLogChanged();
 }
 
@@ -93,13 +102,27 @@ void ChartDialog::slotCallLogChanged()
 		maxDate = QDateTime::currentDateTime().toTime_t();
 	}
 
-
 	ui.dateEdit->setDate(QDateTime::fromTime_t(minDate.toUInt()).date());
 //	ui.dateEdit->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
 
 	ui.dateEdit_2->setDate(QDateTime::fromTime_t(maxDate.toUInt()).date());
 //	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
 
+	m_sqlTableModel->setTable("CallLog");
+	m_sqlTableModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+	m_sqlTableModel->select();
+
+	m_sqlTableModel->setHeaderData(0, Qt::Horizontal, QVariant(QStringLiteral("对方号码")));
+	m_sqlTableModel->setHeaderData(1, Qt::Horizontal, QVariant(QStringLiteral("通话类型")));
+	m_sqlTableModel->setHeaderData(2, Qt::Horizontal, QVariant(QStringLiteral("起始时间")));
+	m_sqlTableModel->setHeaderData(3, Qt::Horizontal, QVariant(QStringLiteral("通话时长")));
+	m_sqlTableModel->setHeaderData(4, Qt::Horizontal, QVariant(QStringLiteral("通话地")));
+	m_sqlTableModel->setHeaderData(5, Qt::Horizontal, QVariant(QStringLiteral("对方通话所在地")));
+	m_sqlTableModel->setHeaderData(6, Qt::Horizontal, QVariant(QStringLiteral("通话所在LAC")));
+	m_sqlTableModel->setHeaderData(7, Qt::Horizontal, QVariant(QStringLiteral("通话所在CELLID")));
+
+	query.exec("SELECT DISTINCT callnumber FROM CallLog");
+	m_comSqlModel->setQuery(query);
 
 	slotDateChanged();
 }
@@ -141,45 +164,11 @@ void ChartDialog::slotDateChanged()
 
 	m_timeChart->replot();
 	m_countChart->replot();
+}
 
-	return;
-//	MyPlotLayout* timeLayout = (MyPlotLayout*)ui.qwtPlot->plotLayout();
-//	MyPlotLayout* countLayout = (MyPlotLayout*)ui.qwtPlot_2->plotLayout();
-
-	QWidget*  timeLayout = ui.qwtPlot->canvas();
-	QWidget*  countLayout = ui.qwtPlot_2->canvas();
-
-
-	QRectF timeYRect = timeLayout->rect();
-	QRectF countYRect = countLayout->rect();
-
-//	QRectF timeYRect = timeLayout->canvasRect();
-//	QRectF countYRect = countLayout->canvasRect();
-
-	int a = timeYRect.x();
-	int a1 = countYRect.x();
-
-	int w = timeYRect.width();
-	int w1 = countYRect.width();
-
-	int m;
-	/*
-	if (timeYRect.width() == countYRect.width())
-	{
-		countYRect.setWidth(10);
-		timeYRect.setWidth(10);
-		countLayout->mySetScaleRect(QwtPlot::yLeft, countYRect);
-		timeLayout->mySetScaleRect(QwtPlot::yLeft, timeYRect);
-	}
-	else if (timeYRect.width() < countYRect.width())
-	{
-		timeYRect.setWidth(countYRect.width());
-		timeLayout->mySetScaleRect(QwtPlot::yLeft, timeYRect);
-	}
-	*/
-//	m_timeChart->replot();
-//	m_countChart->replot();
-
-//	ui.qwtPlot->repaint();
-//	ui.qwtPlot_2->repaint();
+void ChartDialog::slotPhoneNumberChanged(const QString & text)
+{
+	QString cmd;
+	QTextStream(&cmd) << "callnumber = " << text;
+	m_sqlTableModel->setFilter(cmd);
 }

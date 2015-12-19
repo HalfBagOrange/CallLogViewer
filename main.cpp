@@ -105,12 +105,14 @@ int main(int argc, char * argv[])
 
 	QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 
+#if 0
 	LoginDialog loginDialog;
 
 	if (!loginDialog.login())
 	{
 		return 0;
 	}
+#endif
 	/*
     QCommandLineParser commandLineParser;
     commandLineParser.addPositionalArgument(QStringLiteral("url"),
