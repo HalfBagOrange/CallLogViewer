@@ -9,6 +9,16 @@
 CCheck::CCheck(QObject * parent/* = 0*/)
 :QObject(parent), m_timer(0), m_trialTime(0)
 {
+}
+
+CCheck* CCheck::instance()
+{
+	static CCheck inst;
+	return &inst;
+}
+
+bool CCheck::init()
+{
 	QByteArray text;
 	QFile file(".register_key");
 	if (file.exists())
@@ -17,13 +27,11 @@ CCheck::CCheck(QObject * parent/* = 0*/)
 		text = file.readLine(1024);
 		file.close();
 	}
-	softRegister(text, false);
-}
-
-CCheck* CCheck::instance()
-{
-	static CCheck inst;
-	return &inst;
+	if (regSuccessForever != softRegister(text, false))
+	{
+		timerEvent(NULL);
+	}
+	return true;
 }
 
 QString CCheck::getSoftSeriseKey()
@@ -86,8 +94,9 @@ void CCheck::timerEvent(QTimerEvent * event)
 	QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\CallLogViewer", QSettings::NativeFormat);
 	Q_ASSERT(reg.contains("InstallTime"));
 
-	int installTime = reg.value("InstallTime").toDateTime().toMSecsSinceEpoch() / 1000;
-	int currentTime = QTime::currentTime().msecsSinceStartOfDay() / 1000;
+//	QDateTime dt = QDateTime::fromString(reg.value("InstallTime").toString(), "dd-MM-yyyy hh:mm:ss");
+	qint64 installTime = QDateTime::fromString(reg.value("InstallTime").toString(), "dd-MM-yyyy hh:mm:ss").toMSecsSinceEpoch() / 1000;
+	qint64 currentTime = QDateTime::currentMSecsSinceEpoch() / 1000;
 
 	if (currentTime <= installTime || (currentTime - installTime) >= m_trialTime)
 	{

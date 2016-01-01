@@ -68,8 +68,8 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 
 	m_trialTimeout = false;
 
-	connect(CCheck::instance(), SIGNAL(signalTrialTimeout), this, SLOT(slotTrialTimeout));
-	connect(CCheck::instance(), SIGNAL(signalSuccessRegisted), this, SLOT(slotSuccessRegisted));
+	connect(CCheck::instance(), SIGNAL(signalTrialTimeout()), this, SLOT(slotTrialTimeout()));
+	connect(CCheck::instance(), SIGNAL(signalSuccessRegisted()), this, SLOT(slotSuccessRegisted()));
 
 	slotCallLogChanged();
 }

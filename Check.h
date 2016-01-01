@@ -20,6 +20,7 @@ public:
 		regSuccessForever
 	};
 	RegResult softRegister(QString registerKey, bool save = true);
+	bool init();
 
 protected:
 	void timerEvent(QTimerEvent * event);

@@ -167,6 +167,6 @@ int main(int argc, char * argv[])
 	ChartDialog viewer;
 	viewer.show();
 
-	CCheck::instance();
+	CCheck::instance()->init();
     return app.exec();
 }
