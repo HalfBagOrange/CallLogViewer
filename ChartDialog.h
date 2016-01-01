@@ -25,6 +25,9 @@ public slots:
 	void slotDateList();
 	void slotCallLogChanged();
 	void slotPhoneNumberChanged(const QString & text);
+	void slotAbort();
+	void slotTrialTimeout();
+	void slotSuccessRegisted();
 
 private:
 	BarChart* m_timeChart;
@@ -33,6 +36,8 @@ private:
 
 	QMySqlTableModel* m_sqlTableModel;
 	QSqlQueryModel* m_comSqlModel;
+
+	bool m_trialTimeout;
 };
 
 #endif

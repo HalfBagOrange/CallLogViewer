@@ -98,6 +98,8 @@ static void showHelp(QCommandLineParser &parser, const QString errorMessage = QS
     box.exec();
 }
 
+#include "Check.h"
+
 int main(int argc, char * argv[])
 {
 	qInstallMessageHandler(myMessageOutput);
@@ -105,6 +107,7 @@ int main(int argc, char * argv[])
 
 	QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 
+//	CCheck::instance()->getSoftSeriseKey();
 #if 0
 	LoginDialog loginDialog;
 
@@ -163,5 +166,7 @@ int main(int argc, char * argv[])
 	*/
 	ChartDialog viewer;
 	viewer.show();
+
+	CCheck::instance();
     return app.exec();
 }

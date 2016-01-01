@@ -13,6 +13,8 @@
 #include "CallLogViewer.h"
 
 #include <qwt_plot_curve.h>
+#include "HelpDialog.h"
+#include "Check.h"
 
 ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 	:QMainWindow(parent, flags)
@@ -28,6 +30,10 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 	QMenu* toolMenu = ui.menuBar->addMenu(QStringLiteral("工具"));
 	QAction* chartAct = toolMenu->addAction(QStringLiteral("数据列表"));
 	connect(chartAct, SIGNAL(triggered()), this, SLOT(slotDateList()));
+
+	QMenu* helpMenu = ui.menuBar->addMenu(QStringLiteral("帮助"));
+	QAction* abortAct = helpMenu->addAction(QStringLiteral("关于软件"));
+	connect(abortAct, SIGNAL(triggered()), this, SLOT(slotAbort()));
 
 	QwtText axisTitle;
 	QFont axisTitleFont;
@@ -60,6 +66,11 @@ ChartDialog::ChartDialog(QWidget *parent, Qt::WindowFlags flags)
 
 	connect(ui.comboBox, SIGNAL(activated(const QString &)), this, SLOT(slotPhoneNumberChanged(const QString &)));
 
+	m_trialTimeout = false;
+
+	connect(CCheck::instance(), SIGNAL(signalTrialTimeout), this, SLOT(slotTrialTimeout));
+	connect(CCheck::instance(), SIGNAL(signalSuccessRegisted), this, SLOT(slotSuccessRegisted));
+
 	slotCallLogChanged();
 }
 
@@ -67,14 +78,47 @@ ChartDialog::~ChartDialog()
 {
 }
 
+void ChartDialog::slotTrialTimeout()
+{
+	if (m_trialTimeout)
+	{
+		return;
+	}
+	ui.pushButton->setEnabled(false);
+	m_trialTimeout = true;
+	QMessageBox::about(this, QStringLiteral("警告"), QStringLiteral("超出试用期，请重新注册"));
+}
+
+void ChartDialog::slotSuccessRegisted()
+{
+	ui.pushButton->setEnabled(true);
+	m_trialTimeout = false;
+}
+
+void ChartDialog::slotAbort()
+{
+	HelpDialog* help = new HelpDialog(this);
+	help->show();
+}
+
 void ChartDialog::slotDateList()
 {
+	if (m_trialTimeout)
+	{
+		return;
+	}
+
 	CallLogViewer* viewer = new CallLogViewer();
 	viewer->show();
 }
 
 void ChartDialog::slotImportFromWeb()
 {
+	if (m_trialTimeout)
+	{
+		return;
+	}
+
 	QUrl url;// = QUrl(QStringLiteral("http://www.189.cn/"));
 	MainWindow* browser = new MainWindow(url);
 
@@ -84,8 +128,12 @@ void ChartDialog::slotImportFromWeb()
 
 void ChartDialog::slotCallLogChanged()
 {
-	QSqlQuery query;
+	if (m_trialTimeout)
+	{
+		return;
+	}
 
+	QSqlQuery query;
 	query.exec("SELECT MIN(starttime) AS starttime FROM CallLog");
 	query.first();
 	QVariant minDate = query.value("starttime");
