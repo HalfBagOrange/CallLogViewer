@@ -46,11 +46,11 @@ QString CCheck::getSoftSeriseKey()
 
 CCheck::RegResult CCheck::softRegister(QString registerKey, bool save)
 {
-	QByteArray seriseKey(getSoftSeriseKey().toStdString().c_str());
+	QString seriseKey = getSoftSeriseKey();
 
 	RegResult result = regFail;
 	m_trialTime = 3 * 24 * 60;
-	if (registerKey == seriseKey.toBase64(QByteArray::KeepTrailingEquals)) //注册成功，可永久使用
+	if (registerKey == QCryptographicHash::hash(seriseKey.toStdString().c_str(), QCryptographicHash::Sha224).toHex()) //注册成功，可永久使用
 	{
 		if (0 != m_timer)
 		{
@@ -60,12 +60,12 @@ CCheck::RegResult CCheck::softRegister(QString registerKey, bool save)
 		m_trialTime = 0;
 		result = regSuccessForever;
 	}
-	else if (registerKey == seriseKey.toBase64(QByteArray::Base64Encoding)) //注册成功,试用1个月
+	else if (registerKey == QCryptographicHash::hash(seriseKey.toStdString().c_str(), QCryptographicHash::Sha1).toHex()) //注册成功,试用1个月
 	{
 		m_trialTime = 30 * 24 * 60;
 		result = regSuccessMonth;
 	}
-	else if (registerKey == seriseKey.toBase64(QByteArray::OmitTrailingEquals)) //注册成功,试用1周
+	else if (registerKey == QCryptographicHash::hash(seriseKey.toStdString().c_str(), QCryptographicHash::Md5).toHex()) //注册成功,试用1周
 	{
 		m_trialTime = 5 * 24 * 60;
 		result = regSuccessWeek;
@@ -94,7 +94,6 @@ void CCheck::timerEvent(QTimerEvent * event)
 	QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\CallLogViewer", QSettings::NativeFormat);
 	Q_ASSERT(reg.contains("InstallTime"));
 
-//	QDateTime dt = QDateTime::fromString(reg.value("InstallTime").toString(), "dd-MM-yyyy hh:mm:ss");
 	qint64 installTime = QDateTime::fromString(reg.value("InstallTime").toString(), "dd-MM-yyyy hh:mm:ss").toMSecsSinceEpoch() / 1000;
 	qint64 currentTime = QDateTime::currentMSecsSinceEpoch() / 1000;
 
