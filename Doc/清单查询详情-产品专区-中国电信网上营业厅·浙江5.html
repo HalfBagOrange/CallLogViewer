@@ -1,0 +1,1512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0042)http://zj.189.cn/zjpr/cdr/getCdrDetail.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>清单查询详情-产品专区-中国电信网上营业厅·浙江</title>
+<meta name="keywords" content="清单查询详情、我的Wlan清单、话费清单、市话清单、长话清单、信息清单、短信清单、固定电话清单、固话清单、小灵通清单、电信清单、中国电信网上营业厅.浙江、浙江电信、网上营业厅、网上客服中心、10000、话费查询、业务在线办理、在线充值、宽带续包、我的e家、宽带服务、网上营业厅、网上业务办理、小灵通充值、积分查询,电信缴费,充值,购卡,电信营业厅,业务介绍,电信优惠、CMDA">
+
+<meta name="description" content="中国电信网上营业厅.浙江网站为浙江电信客户提供在线支付、充值缴费、帐单查询、清单查询、业务办理、故障申告、投诉咨询等一系列服务功能，面向全省电信客户打造浙江电信互联网服务平台。">
+<meta name="Author" content="?">
+<title>中国电信网上营业厅.浙江--清单查询</title>
+<link href="./清单查询详情-产品专区-中国电信网上营业厅·浙江5_files/pzone.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="http://zj.189.cn/favicon.ico">
+<style>
+#Pzone_details_content_2 td {padding:0;}
+</style>
+<script type="text/javascript" src="./清单查询详情-产品专区-中国电信网上营业厅·浙江5_files/jquery.js"></script>
+<script type="text/javascript">var $j=jQuery.noConflict();</script>
+<script type="text/javascript" src="./清单查询详情-产品专区-中国电信网上营业厅·浙江5_files/prototype.js"></script>
+<script type="text/javascript" src="./清单查询详情-产品专区-中国电信网上营业厅·浙江5_files/buffalo.js"></script>
+<script language="javascript">
+	function sub(page){
+		var pro = document.formtpage;
+		document.getElementById("pagenum").value=page;
+		pro.action = "/zjpr/cdr/getCdrDetail.htm";
+ 		pro.submit();
+	}
+	function initPagenation(count,pagesize,page){
+        var pagenum;
+		pagenum=Math.ceil(count/pagesize);
+		var strPageCode="";
+		for(var i=1;i<=pagenum;i++){
+			strPageCode=strPageCode+"&nbsp;&nbsp;<a href='javascript:sub("+i+");'>"+i+"</a>";
+		}
+		if(page==1){
+			if(pagenum==1){
+			document.getElementById("id1").innerHTML="共"+pagenum+"页&nbsp;&nbsp;&nbsp;<a href='javascript:sub(1);'>首页</a>&nbsp;&nbsp;&nbsp;<a href='javascript:sub(1);'>末页</a>";
+			return; 
+			}
+			else{
+			document.getElementById("id1").innerHTML="共"+pagenum+"页"+"&nbsp;&nbsp;&nbsp;<a href='javascript:sub(1);'>首页</a>"+strPageCode+"&nbsp;&nbsp;&nbsp;<a href='javascript:sub("+(page+1)+");'>下一页</a>&nbsp;&nbsp;&nbsp;<a href='javascript:sub("+pagenum+");'>末页</a>";
+			return;
+			}
+		}
+		if(page>1&&page < pagenum){
+			document.getElementById("id1").innerHTML="共"+pagenum+"页"+"&nbsp;&nbsp;&nbsp;<a href='javascript:sub(1);'>首页</a>&nbsp;&nbsp;&nbsp; <a href='javascript:sub("+(page-1)+")' >上一页</a>"+strPageCode+"&nbsp;&nbsp;&nbsp;<a href='javascript:sub("+(page+1)+")'>下一页</a>&nbsp;&nbsp;&nbsp;<a href='javascript:sub("+pagenum+");'>末页</a>";
+			return;
+		}
+		if(pagenum==page){
+			document.getElementById("id1").innerHTML="共"+pagenum+"页"+"&nbsp;&nbsp;&nbsp;<a href='javascript:sub(1);'>首页</a>&nbsp;&nbsp;&nbsp;<a href='javascript:sub("+(page-1)+")'>上一页</a>"+strPageCode+"&nbsp;&nbsp;&nbsp;<a href='javascript:sub("+pagenum+");'>末页</a>";
+			return;
+		}
+	}
+	function funcFmtTime(emp){
+		var rstr="";
+		if(emp.toString().indexOf(":")!=-1){
+		   rstr=emp; 	
+		}
+		else{
+		if(emp.toString().indexOf(",")!=-1)
+		{
+			emp=emp.replace(/,/,"");
+		}
+		var i=Math.floor(emp%60);
+		
+		var j=(emp-i)/60;
+		
+		var k=Math.floor(j%60);
+		
+		var m=Math.floor(j/60);
+		
+		if(m<10)
+		{
+		rstr="0"+m+":";
+		}
+		else{
+		rstr=m+":";
+		}
+		
+		if(k<10){
+		rstr+="0"+k+":";
+		}
+		else{
+		rstr+=k+":";
+		}
+		if(i<10){
+		rstr+="0"+i;
+		}
+		else{
+		rstr+=i;	
+		}
+		}
+		document.write(rstr);
+	}
+	function empsub(emp){
+		var str="";
+		
+		if(emp.indexOf("|")!=-1){
+			
+			str=emp.substr(emp.indexOf("|")+1,emp.length-emp.indexOf("|")-1);
+			
+		}
+		else{
+			str=emp;
+		}
+		document.write(str);
+	}
+	
+	function rightsub(emp){
+		var str="";
+		if(emp.indexOf("|")!=-1){	
+			str=emp.substr(emp.indexOf("|")+1,emp.length);
+		}
+		else{
+			str=emp;
+		}
+		document.write(str);
+	}
+	function getbF(bf){
+		if(bf.toString().indexOf(",")!=-1)
+		{
+			bf=bf.replace(/,/,"");
+		}
+	    document.write(bf/100);
+	}
+
+	function trans(bf){
+		if(bf.toString().indexOf(",")!=-1)
+		{
+			bf=bf.replace(/,/,"");
+			return bf;
+		}
+	    	return bf;
+	}
+	function shishicdrdesc(cdrmonth){
+		var myDate = new Date();
+		var year=myDate.getFullYear().toString(); 
+   		var month=(myDate.getMonth()+1).toString(); 
+  		if(month.length<2){
+  			month="0"+month;
+  		}
+  		if((year+month)==cdrmonth){
+  			document.getElementById("id2").innerHTML="手机实时详单做参考，以3日出帐以后的历史详单数据为准";
+  		}else{
+  		    document.getElementById("id2").innerHTML="";
+  		}
+	}
+  	function formateDate(datestring){
+		var str="";
+		str=datestring.replace('T',' ');
+		str=str.substring(0,str.indexOf('.000+'));
+		document.write(str);
+	} 
+	function cdrSubmitmy(){
+	  	var buffalo = new Buffalo("/bfapp");
+		buffalo.remoteCall("cdrService.querycdrasset",[],function(reply){
+			var resultmap = reply.getResult();
+			var cdrlevel=resultmap["cdrlevel"];
+			var otherinfo=resultmap["otherinfo"];
+			var logininfo=resultmap["logininfo"];
+			var intlevel=parseInt(cdrlevel);
+			if(intlevel<3){
+				var logintype=logininfo["serv_type_id"];
+				var loginnbr=logininfo["product_nbr"];
+				var areaid=logininfo["area_id"]+"";
+				var loginname=logininfo["serv_type_name"];
+				var loginintegration=logininfo["integration_id"];				
+		        $j("#productnbr").val(loginnbr);
+		        $j("#integration_id").val(loginintegration);
+		        $j("#areaid").val(areaid);
+		        $j("#product_servtype").val(logintype);
+		        $j("#servtypename").val(loginname);
+
+		        //cdrSubmitmytime();
+		        
+			}
+		});
+		   //var t=window.setTimeout(function(){cdrSubmitmytime()},1000);
+    }
+    function  cdrSubmitmytime(){
+         document.form1.action="/zjpr/cdr/getCdrDetail.htm";
+         document.form1.target="_blank";
+         document.form1.submit();
+    }
+</script></head>
+
+
+<body style="background-color: #FFFFFF;">
+<div>
+<div class="Details_logo"></div></div>
+<div id="Pzone_details_top_2"><img src="./清单查询详情-产品专区-中国电信网上营业厅·浙江5_files/pic_pzone_dian.gif">&nbsp;&nbsp;我的清单详情</div>
+<style>
+.accountTotal { padding:10px 0 10px 10px;}
+.accountTotal table.accountTotalT { text-align:left; width:600px; float:left; clear:left;}
+.accountTotal table.accountTotalT td { font-weight:bold; line-height:20px; width:50%;}
+table.accountTotallist{ clear:both; text-align:left; width:600px; border-top:1px #ccc dashed; border-left:1px #ccc dashed; float:left;}
+table.accountTotallist th { background:#ddf0ff;text-align:center; padding:1px 0; line-height:30px;border-bottom:1px #ccc dashed; border-right:1px #ccc dashed;}
+table.accountTotallist th.title { text-align:left; padding-left:10px; font-size:13px; font-weight:bold;}
+table.accountTotallist td { line-height:24px; text-align:center; padding:1px 0; border-bottom:1px #ccc dashed; border-right:1px #ccc dashed;}
+.clearfix{zoom:1;display:block}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+</style>
+<div class="accountTotal clearfix">
+	<table cellspacing="0" cellpadding="0" border="0" align="center" class="accountTotalT">
+		<tbody><tr>
+			<td>客户姓名：浙江大华技术股份有限公司</td>
+			<td>查询号码：18969077172</td>
+		</tr>
+		<tr>
+			<td>查询账期：<script>var cdrdate='201505';document.write(cdrdate.substring(0,4)+"年"+cdrdate.substring(4,6)+"月");</script>2015年05月</td>
+			<td>查询日期：<span id="thistime">2015年5月10日</span></td>
+		</tr>
+		
+	</tbody></table>
+</div>
+<div id="Pzone_details_content_2">
+	<!--表格里面内容为空的时候  请输入&nbsp;-->
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="cdrtable">
+	<tbody><tr>
+		<td bgcolor="#ddf0ff" align="center" width="11%" style="text-align: left; padding-left: 10px; font-size: 13px; font-weight: bold; line-height: 33px; width: 997px;" class="pzone_menu_dashed pzone_right_dashed" colspan="18">清单详情</td>
+	</tr>
+	
+<!-- 以下为新详单格式 -->
+		<tr>
+			<td width="7%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">序列号</td>
+			<td width="8%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">对方号码</td>
+			<td width="7%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">呼叫类型</td>
+			<td align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">通话日期起始时间</td>
+			<td width="7%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">通话时长</td>
+			<td width="7%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">通话地</td>
+			<td width="7%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">通话类型</td>
+			<td width="10%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">本地费或漫游费</td> 
+			<td width="6%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">长途费</td>
+			<td width="6%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">减免</td>
+			<td width="6%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">费用小计</td>
+			<td width="6%" align="center" bgcolor="#DDF0FF" class="pzone_menu_dashed pzone_right_dashed">备注</td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">1</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15968847219</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-01T10:28:47.000+08:00")</script>2015-05-01 10:28:47</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("128")</script>00:02:08</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">湖州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内漫游")</script>国内漫游</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45") </script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45")</script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">2</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15829794949</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-01T12:15:51.000+08:00")</script>2015-05-01 12:15:51</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("115")</script>00:01:55</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">湖州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内漫游")</script>国内漫游</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30") </script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30")</script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">13588789828</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-01T12:18:16.000+08:00")</script>2015-05-01 12:18:16</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("1356")</script>00:22:36</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">湖州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内漫游")</script>国内漫游</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("345") </script>3.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("345")</script>3.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">4</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15867126389</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-01T15:52:12.000+08:00")</script>2015-05-01 15:52:12</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("89")</script>00:01:29</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">湖州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内漫游")</script>国内漫游</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30") </script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30")</script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">5</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">05724008205555</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-01T16:32:19.000+08:00")</script>2015-05-01 16:32:19</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("270")</script>00:04:30</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">湖州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内漫游")</script>国内漫游</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("75") </script>0.75</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("75")</script>0.75</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">6</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15968847219</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-01T19:07:33.000+08:00")</script>2015-05-01 19:07:33</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("495")</script>00:08:15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">湖州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内漫游")</script>国内漫游</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">7</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">13018927690</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-01T19:16:13.000+08:00")</script>2015-05-01 19:16:13</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("478")</script>00:07:58</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">湖州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内漫游")</script>国内漫游</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("120") </script>1.2</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("120")</script>1.2</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">8</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-02T09:35:56.000+08:00")</script>2015-05-02 09:35:56</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("45")</script>00:00:45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">9</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-02T10:08:41.000+08:00")</script>2015-05-02 10:08:41</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("38")</script>00:00:38</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">10</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18969029207</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-02T18:35:15.000+08:00")</script>2015-05-02 18:35:15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("163")</script>00:02:43</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">11</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18969029207</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-02T19:37:38.000+08:00")</script>2015-05-02 19:37:38</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("20")</script>00:00:20</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">12</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15867126389</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-03T08:52:25.000+08:00")</script>2015-05-03 08:52:25</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("151")</script>00:02:31</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">湖州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内漫游")</script>国内漫游</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45") </script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45")</script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">13</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">13375796106</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-03T20:29:28.000+08:00")</script>2015-05-03 20:29:28</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("627")</script>00:10:27</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内长途")</script>国内长途</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("165")  </script>1.65</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("165")</script>1.65</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">14</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">676175</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T07:46:10.000+08:00")</script>2015-05-04 07:46:10</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("27")</script>00:00:27</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">671701</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T08:53:20.000+08:00")</script>2015-05-04 08:53:20</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("131")</script>00:02:11</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45") </script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45")</script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">16</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15618997065</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T08:56:03.000+08:00")</script>2015-05-04 08:56:03</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("32")</script>00:00:32</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内长途")</script>国内长途</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")  </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">17</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">669207</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T08:56:52.000+08:00")</script>2015-05-04 08:56:52</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("54")</script>00:00:54</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">667027</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T08:59:31.000+08:00")</script>2015-05-04 08:59:31</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("59")</script>00:00:59</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">19</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">662106</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T09:16:00.000+08:00")</script>2015-05-04 09:16:00</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("67")</script>00:01:07</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30") </script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30")</script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">20</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">670286</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T09:17:29.000+08:00")</script>2015-05-04 09:17:29</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("76")</script>00:01:16</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30") </script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30")</script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">21</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15618997065</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T09:28:42.000+08:00")</script>2015-05-04 09:28:42</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("16")</script>00:00:16</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内长途")</script>国内长途</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")  </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">22</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15618997065</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T10:00:30.000+08:00")</script>2015-05-04 10:00:30</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("44")</script>00:00:44</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">23</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15618997065</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T10:48:13.000+08:00")</script>2015-05-04 10:48:13</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("18")</script>00:00:18</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">24</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">660736</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T10:49:44.000+08:00")</script>2015-05-04 10:49:44</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("15")</script>00:00:15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">25</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18969140736</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T10:51:06.000+08:00")</script>2015-05-04 10:51:06</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("12")</script>00:00:12</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">26</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18969140736</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T10:52:13.000+08:00")</script>2015-05-04 10:52:13</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("16")</script>00:00:16</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">27</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">667027</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T11:32:06.000+08:00")</script>2015-05-04 11:32:06</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("17")</script>00:00:17</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">28</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">667027</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T12:04:31.000+08:00")</script>2015-05-04 12:04:31</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("13")</script>00:00:13</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">29</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">663103</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T13:47:31.000+08:00")</script>2015-05-04 13:47:31</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("379")</script>00:06:19</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("105") </script>1.05</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("105")</script>1.05</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">30</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18958132415</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T14:57:58.000+08:00")</script>2015-05-04 14:57:58</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("21")</script>00:00:21</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">31</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18958132415</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T14:58:30.000+08:00")</script>2015-05-04 14:58:30</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("90")</script>00:01:30</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">32</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18516291675</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T15:16:50.000+08:00")</script>2015-05-04 15:16:50</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("197")</script>00:03:17</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("国内长途")</script>国内长途</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("60")  </script>0.6</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("60")</script>0.6</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">33</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">01060603042</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T15:32:35.000+08:00")</script>2015-05-04 15:32:35</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("236")</script>00:03:56</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">34</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">01060603042</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T16:14:49.000+08:00")</script>2015-05-04 16:14:49</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("1744")</script>00:29:04</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">35</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T17:45:54.000+08:00")</script>2015-05-04 17:45:54</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("57")</script>00:00:57</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">36</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">667786</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T17:48:15.000+08:00")</script>2015-05-04 17:48:15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("39")</script>00:00:39</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">37</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">667786</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T17:55:06.000+08:00")</script>2015-05-04 17:55:06</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("10")</script>00:00:10</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">38</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18969077178</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-04T19:02:45.000+08:00")</script>2015-05-04 19:02:45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("231")</script>00:03:51</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">39</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-05T08:07:56.000+08:00")</script>2015-05-05 08:07:56</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("38")</script>00:00:38</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">40</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-05T09:06:29.000+08:00")</script>2015-05-05 09:06:29</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("51")</script>00:00:51</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">41</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">667169</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-05T10:07:24.000+08:00")</script>2015-05-05 10:07:24</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("13")</script>00:00:13</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">42</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">13735835608</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-05T10:17:57.000+08:00")</script>2015-05-05 10:17:57</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("9")</script>00:00:09</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">43</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">13735835608</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-05T10:18:28.000+08:00")</script>2015-05-05 10:18:28</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("9")</script>00:00:09</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">44</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-05T17:43:25.000+08:00")</script>2015-05-05 17:43:25</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("46")</script>00:00:46</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18957134552</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-06T16:30:54.000+08:00")</script>2015-05-06 16:30:54</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("181")</script>00:03:01</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">46</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-06T17:36:30.000+08:00")</script>2015-05-06 17:36:30</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("60")</script>00:01:00</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">47</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-06T17:39:56.000+08:00")</script>2015-05-06 17:39:56</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("22")</script>00:00:22</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">48</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-06T17:44:00.000+08:00")</script>2015-05-06 17:44:00</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("14")</script>00:00:14</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">49</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-06T20:11:19.000+08:00")</script>2015-05-06 20:11:19</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("14")</script>00:00:14</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">50</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T08:41:20.000+08:00")</script>2015-05-07 08:41:20</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("117")</script>00:01:57</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">51</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">662722</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T08:46:14.000+08:00")</script>2015-05-07 08:46:14</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("60")</script>00:01:00</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">52</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T15:20:56.000+08:00")</script>2015-05-07 15:20:56</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("114")</script>00:01:54</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30") </script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30")</script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">53</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18268044248</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T15:29:38.000+08:00")</script>2015-05-07 15:29:38</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("329")</script>00:05:29</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("90") </script>0.9</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("90")</script>0.9</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">54</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T15:54:33.000+08:00")</script>2015-05-07 15:54:33</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("170")</script>00:02:50</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45") </script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45")</script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">55</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15167143511</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T16:07:01.000+08:00")</script>2015-05-07 16:07:01</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("142")</script>00:02:22</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45") </script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45")</script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">56</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T16:09:53.000+08:00")</script>2015-05-07 16:09:53</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("88")</script>00:01:28</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30") </script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30")</script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">57</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">13429668882</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T16:47:56.000+08:00")</script>2015-05-07 16:47:56</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("58")</script>00:00:58</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">58</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18968192228</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T16:50:39.000+08:00")</script>2015-05-07 16:50:39</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("41")</script>00:00:41</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">59</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18458111121</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T16:52:12.000+08:00")</script>2015-05-07 16:52:12</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("172")</script>00:02:52</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45") </script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45")</script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">60</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15825526746</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T16:58:46.000+08:00")</script>2015-05-07 16:58:46</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("30")</script>00:00:30</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">61</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T17:29:39.000+08:00")</script>2015-05-07 17:29:39</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("142")</script>00:02:22</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45") </script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45")</script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">62</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18268044248</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T17:49:46.000+08:00")</script>2015-05-07 17:49:46</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("26")</script>00:00:26</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">63</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T17:57:13.000+08:00")</script>2015-05-07 17:57:13</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("30")</script>00:00:30</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">64</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15267061317</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T18:18:01.000+08:00")</script>2015-05-07 18:18:01</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("22")</script>00:00:22</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">65</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15988890119</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T18:19:38.000+08:00")</script>2015-05-07 18:19:38</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("25")</script>00:00:25</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">66</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18058817340</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T18:20:43.000+08:00")</script>2015-05-07 18:20:43</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("153")</script>00:02:33</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45") </script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("45")</script>0.45</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">67</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">667106</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T18:29:27.000+08:00")</script>2015-05-07 18:29:27</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("35")</script>00:00:35</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">68</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T18:43:15.000+08:00")</script>2015-05-07 18:43:15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("42")</script>00:00:42</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">69</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T18:50:00.000+08:00")</script>2015-05-07 18:50:00</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("14")</script>00:00:14</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">70</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15867126389</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T19:12:05.000+08:00")</script>2015-05-07 19:12:05</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("49")</script>00:00:49</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">71</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15867126389</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-07T19:14:03.000+08:00")</script>2015-05-07 19:14:03</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("17")</script>00:00:17</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">72</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">669207</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-08T07:43:54.000+08:00")</script>2015-05-08 07:43:54</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("11")</script>00:00:11</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">73</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-08T16:42:50.000+08:00")</script>2015-05-08 16:42:50</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("61")</script>00:01:01</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">74</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15867126389</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-08T18:57:14.000+08:00")</script>2015-05-08 18:57:14</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("62")</script>00:01:02</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">75</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">4001880215</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-08T19:12:08.000+08:00")</script>2015-05-08 19:12:08</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("11")</script>00:00:11</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">76</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-08T19:56:11.000+08:00")</script>2015-05-08 19:56:11</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("29")</script>00:00:29</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">77</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">10000</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-08T21:43:53.000+08:00")</script>2015-05-08 21:43:53</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("81")</script>00:01:21</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">78</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18969079072</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T08:04:14.000+08:00")</script>2015-05-09 08:04:14</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("26")</script>00:00:26</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">79</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15058161916</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T10:15:49.000+08:00")</script>2015-05-09 10:15:49</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("17")</script>00:00:17</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">80</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T10:16:24.000+08:00")</script>2015-05-09 10:16:24</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("21")</script>00:00:21</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15") </script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("15")</script>0.15</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">81</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T10:26:12.000+08:00")</script>2015-05-09 10:26:12</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("80")</script>00:01:20</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30") </script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("30")</script>0.3</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">82</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T11:00:52.000+08:00")</script>2015-05-09 11:00:52</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("84")</script>00:01:24</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">83</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">18969077813</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T11:47:50.000+08:00")</script>2015-05-09 11:47:50</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("65")</script>00:01:05</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">84</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">主叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T14:58:04.000+08:00")</script>2015-05-09 14:58:04</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("190")</script>00:03:10</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("60") </script>0.6</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("60")</script>0.6</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">85</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T15:37:31.000+08:00")</script>2015-05-09 15:37:31</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("66")</script>00:01:06</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">86</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T17:39:04.000+08:00")</script>2015-05-09 17:39:04</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("33")</script>00:00:33</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+		<tr>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">87</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">15858111083</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">被叫</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>formateDate("2015-05-09T17:54:29.000+08:00")</script>2015-05-09 17:54:29</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>funcFmtTime("25")</script>00:00:25</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed">杭州</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script>empsub("本地")</script>本地</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")  </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0")</script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"><script> getbF("0") </script>0</td>
+			<td align="center" class="Pzone_details_dashed pzone_right_dashed"></td>
+		</tr>
+        <!--LteType用于隐藏费用减免等  -->
+	</tbody></table>
+	<span id="id2" style="display:none">手机实时详单做参考，以3日出帐以后的历史详单数据为准</span><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="cdrtable">
+		<tbody><tr>
+	 		<td align="right" colspan="9"><span id="id1">共1页&nbsp;&nbsp;&nbsp;<a href="javascript:sub(1);">首页</a>&nbsp;&nbsp;&nbsp;<a href="javascript:sub(1);">末页</a></span> </td>
+		</tr>	
+		<tr>
+			<td height="40" colspan="9" align="center" style="line-height:125%">
+		      <span style="color:red;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;温馨提示：</span><br> 
+              <span style="color:red;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.查询结果仅供参考，实际收费以帐单为准；</span><br> 
+              <span style="color:red;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.由于详单涉及您的个人隐私，为保护您的信息安全，请妥善保管您的服务密码。</span><br>      
+				<input class="pzone_button" type="submit" name="button" value="关闭" onclick="javascript:window.close();">
+			</td>
+	    </tr>
+	    
+	</tbody></table>
+</div>
+<form name="formtpage" action="" method="post">
+    <input id="pagenum" type="hidden" name="cdrCondition.pagenum" value="">
+    <input type="hidden" name="cdrCondition.productnbr" value="18969077172">
+    <input type="hidden" name="cdrCondition.productid" value="1-HE6BLJ4">
+    <input type="hidden" name="cdrCondition.areaid" value="571">
+    <input type="hidden" name="cdrCondition.cdrtype" value="11"> 
+    <input type="hidden" name="cdrCondition.cdrmonth" value="201505"> 
+    <input type="hidden" name="cdrCondition.cdrlevel" value="1">   
+    <input type="hidden" name="cdrCondition.randpsw" value="fr66ta">
+    <input type="hidden" name="cdrCondition.product_servtype" value="18">     
+    <input type="hidden" name="cdrCondition.recievenbr" value="移动电话">   
+</form> 
+<div id="Details_copyright_2">
+<!--include页脚(Details_copyright.html)页面-->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td height="23" colspan="2" class="Details_cpyright"></td>
+  </tr>
+  <tr>
+    <td height="60" align="left">&nbsp;&nbsp;<img src="./清单查询详情-产品专区-中国电信网上营业厅·浙江5_files/pic_10000.gif" width="156" height="19"></td>
+    <td align="right" valign="middle" style="color:#0152A3">中国电信网上营业厅·浙江 版权所有&nbsp;&nbsp;</td>
+  </tr>
+</tbody></table>
+</div>
+
+<script type="text/javascript" src="./清单查询详情-产品专区-中国电信网上营业厅·浙江5_files/jquery.fixedtableheader.js">
+</script>
+<script type="text/javascript">
+initPagenation(87,100,1);	
+shishicdrdesc(201505);
+var date=new Date();
+var year=date.getYear();
+if(year<2000){
+	year=year+1900;
+}
+//$(function(){
+//	$(".cdrtable").fixedtableheader	({highlightrow: true, headerrowsize:2 });
+//});
+$j("#thistime").html(year+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日")
+</script>
+
+</body></html>
