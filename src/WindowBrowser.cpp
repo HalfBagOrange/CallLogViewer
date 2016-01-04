@@ -6,8 +6,6 @@
 #include <QSqlQuery>
 #include "WindowBrowser.h"
 
-//! [1]
-
 class WebView : public QWebView
 {
 public : 
@@ -90,41 +88,10 @@ MainWindow::MainWindow(const QUrl& url)
 	act->setText(QStringLiteral("提取通话记录"));
 	connect(act, SIGNAL(triggered()), this, SLOT(fetchCallLog()));
 	toolBar->addAction(act);
-//! [2]
 
-	/*
-    QMenu *viewMenu = menuBar()->addMenu(QStringLiteral("开发"));
-    QAction* viewSourceAction = new QAction(QStringLiteral("Html源码"), this);
-    connect(viewSourceAction, SIGNAL(triggered()), SLOT(viewSource()));
-    viewMenu->addAction(viewSourceAction);
-	*/
-//! [3]
-/*
-    QMenu *effectMenu = menuBar()->addMenu(tr("&Effect"));
-    effectMenu->addAction("Highlight all links", this, SLOT(highlightAllLinks()));
-
-    rotateAction = new QAction(this);
-    rotateAction->setIcon(style()->standardIcon(QStyle::SP_FileDialogDetailedView));
-    rotateAction->setCheckable(true);
-    rotateAction->setText(tr("Turn images upside down"));
-    connect(rotateAction, SIGNAL(toggled(bool)), this, SLOT(rotateImages(bool)));
-    effectMenu->addAction(rotateAction);
-*/
-	/*
-    QMenu *toolsMenu = menuBar()->addMenu(QStringLiteral("工具"));
-    toolsMenu->addAction(QStringLiteral("提取通话记录"), this, SLOT(fetchCallLog()));
-    toolsMenu->addAction(QStringLiteral("通话记录"), this, SLOT(callLogTable()));
-	*/
-/*
-    toolsMenu->addAction(tr("Remove GIF images"), this, SLOT(removeGifImages()));
-    toolsMenu->addAction(tr("Remove all inline frames"), this, SLOT(removeInlineFrames()));
-    toolsMenu->addAction(tr("Remove all object elements"), this, SLOT(removeObjectElements()));
-    toolsMenu->addAction(tr("Remove all embedded elements"), this, SLOT(removeEmbeddedElements()));
-*/
     setCentralWidget(view);
     setUnifiedTitleAndToolBarOnMac(true);
 }
-//! [3]
 
 void MainWindow::gotoLinkUrl(const QUrl& url)
 {

@@ -1,7 +1,7 @@
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef WINDOW_BROWSER_H
+#define WINDOW_BROWSER_H
 
-#include <QtWidgets>
+#include <QMainWindow>
 #include <QWebElement>
 //class QWebView;
 //QT_BEGIN_NAMESPACE
@@ -9,16 +9,12 @@ class QLineEdit;
 //QT_END_NAMESPACE
 class WebView;
 
-//! [1]
-class MainWindow : public QMainWindow
+class WindowBrowser : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(const QUrl& url);
-
-signals:
-	void sqlDatachanged();
+	WindowBrowser(QWidget * parent = 0, Qt::WindowFlags flags = 0);
 
 protected slots:
 
@@ -52,8 +48,6 @@ private:
     QLineEdit *locationEdit;
     QAction *rotateAction;
     int progress;
-	bool m_firtOpen;
-//! [1]
 };
 
 #endif
