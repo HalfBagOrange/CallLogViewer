@@ -21,12 +21,6 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{36246c7c-f8ec-49ec-b0e5-23085c490a1d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{a726f6e9-e39c-479c-b5b7-b834c8a087f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{07e6af38-c7bf-4f2d-8a10-05dabcd23244}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,29 +41,35 @@
     <ClCompile Include="ObjectRegister.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CallLogPlot.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DialogHelp.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ObjectRegister.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_WindowMain.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="DialogLogin.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DialogLogin.cpp">
-      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="WindowTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_WindowTable.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="WindowBrowser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\moc_CallLogPlot.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\moc_DialogHelp.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\moc_DialogLogin.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\moc_ObjectRegister.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\moc_WindowBrowser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\moc_WindowMain.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\moc_WindowTable.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,11 +103,17 @@
     <CustomBuild Include="WindowTable.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="WindowBrowser.ui">
+      <Filter>UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WindowBrowser.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CallLogDataBase.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CallLogDataBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_WindowMain.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -121,6 +127,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_WindowTable.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_WindowBrowser.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

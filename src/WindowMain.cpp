@@ -1,6 +1,7 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 
+#include "WindowBrowser.h"
 #include "WindowTable.h"
 #include "ObjectRegister.h"
 #include "DialogHelp.h"
@@ -84,13 +85,8 @@ void WindowMain::slotSuccessRegister()
 
 void WindowMain::slotImportFromHtml()
 {
-	/*
-	QUrl url;// = QUrl(QStringLiteral("http://www.189.cn/"));
-	MainWindow* browser = new MainWindow(url);
-
-	connect(browser, SIGNAL(sqlDatachanged()), this, SLOT(slotCallLogChanged()));
+	WindowBrowser* browser = new WindowBrowser(this);
 	browser->show();
-	*/
 }
 
 void WindowMain::slotCallLogTable()

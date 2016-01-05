@@ -3,10 +3,9 @@
 
 #include <QMainWindow>
 #include <QWebElement>
-//class QWebView;
-//QT_BEGIN_NAMESPACE
-class QLineEdit;
-//QT_END_NAMESPACE
+#include <QLineEdit>
+#include "ui_WindowBrowser.h"
+
 class WebView;
 
 class WindowBrowser : public QMainWindow
@@ -17,37 +16,28 @@ public:
 	WindowBrowser(QWidget * parent = 0, Qt::WindowFlags flags = 0);
 
 protected slots:
+	void slotAdjustTitle();
+	void slotAdjustProgress(int progress);
+	void slotGotoLinkUrl(const QUrl & url);
+	void slotChangeLocation();
+	void slotFetchCallLog();
 
-    void adjustLocation();
-    void changeLocation();
-    void adjustTitle();
-    void setProgress(int p);
-    void finishLoading(bool);
-
-    void viewSource();
-    void slotSourceDownloaded();
-
-    void highlightAllLinks();
-    void rotateImages(bool invert);
-    void removeGifImages();
-    void removeInlineFrames();
-    void removeObjectElements();
-    void removeEmbeddedElements();
-
-    void gotoLinkUrl(const QUrl& url);
-    void fetchCallLog();
-    void callLogTable();
-
-	QWebElement & findDetailFromFrame(QWebFrame* webFrame);
-	QWebElement & findDetailFromTable(QWebElement& table);
-	void fetchCallLogFromTelecom(QWebElement& table);
-	void fetchCallLogFromTeleDetall(QWebElement& table);
 private:
-    QString jQuery;
-    WebView *view;
-    QLineEdit *locationEdit;
-    QAction *rotateAction;
-    int progress;
+	//从中国电信官方网站提取通话记录
+	void fetchCallLogFromChinaTelecomTable(QWebElement& table);
+
+	//从中国移动通信详单提取通话记录
+	QWebElement findTableFromChinaMobileWebFrame(QWebFrame* webFrame);
+	QWebElement const& findTableFromChinaMobileWebTable(QWebElement const& table);
+	void fetchCallLogFromChinaMobileTable(QWebElement& table);
+
+private:
+	Ui::WindowBrowser ui;
+
+    WebView* m_webView;
+	QLineEdit* m_locationEdit;
+
+	bool m_firstLoad;
 };
 
 #endif
