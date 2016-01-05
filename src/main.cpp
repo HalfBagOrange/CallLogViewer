@@ -60,7 +60,7 @@ int main(int argc, char * argv[])
 	WindowMain viewer;
 	viewer.show();
 
-	ObjectRegister::instance()->init();
+//	ObjectRegister::instance()->init();
 
     return app.exec();
 }
