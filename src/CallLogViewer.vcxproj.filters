@@ -71,6 +71,12 @@
     <ClCompile Include="GeneratedFiles\moc_WindowTable.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="WindowViewSingle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\moc_WindowViewSingle.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="WindowMain.h">
@@ -112,6 +118,12 @@
     <CustomBuild Include="CallLogDataBase.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="WindowViewSingle.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WindowViewSingle.ui">
+      <Filter>UI</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_WindowMain.h">
@@ -130,6 +142,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_WindowBrowser.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_WindowViewSingle.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

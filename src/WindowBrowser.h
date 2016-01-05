@@ -15,6 +15,9 @@ class WindowBrowser : public QMainWindow
 public:
 	WindowBrowser(QWidget * parent = 0, Qt::WindowFlags flags = 0);
 
+signals:
+	void signalCallLogChanged();
+
 protected slots:
 	void slotAdjustTitle();
 	void slotAdjustProgress(int progress);

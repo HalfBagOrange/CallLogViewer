@@ -280,6 +280,8 @@ void WindowBrowser::fetchCallLogFromChinaMobileTable(QWebElement& table)
 	QString info;
 	QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");
 	QMessageBox::about(this, QStringLiteral("信息"), info);
+
+	emit signalCallLogChanged();
 }
 
 void WindowBrowser::fetchCallLogFromChinaTelecomTable(QWebElement& table)
@@ -342,6 +344,8 @@ void WindowBrowser::fetchCallLogFromChinaTelecomTable(QWebElement& table)
     QString info;
     QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");
     QMessageBox::about(this, QStringLiteral("信息"), info);
+
+	emit signalCallLogChanged();
 }
 
 

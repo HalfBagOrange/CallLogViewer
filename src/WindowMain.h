@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QMenu>
-#include "CallLogDataBase.h"
 #include "CallLogPlot.h"
 #include "ui_WindowMain.h"
 
@@ -14,6 +13,9 @@ public:
 	WindowMain(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	~WindowMain();
 
+signals:
+	void signalChallLogChanged();
+
 public slots:
 	void slotCallLogChanged();
 	void slotDateTimeChanged();
@@ -21,6 +23,7 @@ public slots:
 	void slotImportFromHtml();
 	void slotCallLogTable();
 	void slotAbout();
+	void slotViewSingle();
 	
 	void slotTrialTimeout();
 	void slotSuccessRegister();

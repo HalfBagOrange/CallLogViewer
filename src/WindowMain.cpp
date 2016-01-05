@@ -1,6 +1,7 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 
+#include "WindowViewSingle.h"
 #include "WindowBrowser.h"
 #include "WindowTable.h"
 #include "ObjectRegister.h"
@@ -19,6 +20,8 @@ WindowMain::WindowMain(QWidget *parent, Qt::WindowFlags flags)
 	connect(webImportAct, SIGNAL(triggered()), this, SLOT(slotImportFromHtml()));
 
 	m_toolMenu = ui.menuBar->addMenu(QStringLiteral("工具"));
+	QAction* viewSingleAct = m_toolMenu->addAction(QStringLiteral("单个号码通信视图"));
+	connect(viewSingleAct, SIGNAL(triggered()), this, SLOT(slotViewSingle()));
 	QAction* chartAct = m_toolMenu->addAction(QStringLiteral("数据列表"));
 	connect(chartAct, SIGNAL(triggered()), this, SLOT(slotCallLogTable()));
 
@@ -86,12 +89,14 @@ void WindowMain::slotSuccessRegister()
 void WindowMain::slotImportFromHtml()
 {
 	WindowBrowser* browser = new WindowBrowser(this);
+	connect(browser, SIGNAL(signalCallLogChanged()), this, SLOT(slotCallLogChanged()));
 	browser->show();
 }
 
 void WindowMain::slotCallLogTable()
 {
 	WindowTable* table = new WindowTable(this);
+	connect(this, SIGNAL(signalChallLogChanged()), table, SLOT(slotCallLogChanged()));
 	table->show();
 }
 
@@ -99,6 +104,13 @@ void WindowMain::slotAbout()
 {
 	DialogHelp* help = new DialogHelp(this);
 	help->show();
+}
+
+void WindowMain::slotViewSingle()
+{
+	WindowViewSingle* viewSingle = new WindowViewSingle(this);
+	connect(this, SIGNAL(signalChallLogChanged()), viewSingle, SLOT(slotCallLogChanged()));
+	viewSingle->show();
 }
 
 void WindowMain::slotCallLogChanged()
@@ -127,6 +139,8 @@ void WindowMain::slotCallLogChanged()
 //	ui.dateEdit_2->setDateRange(QDateTime::fromTime_t(minDate.toUInt()).date(), QDateTime::fromTime_t(maxDate.toUInt()).date());
 
 	slotDateTimeChanged();
+
+	emit signalChallLogChanged();
 }
 
 void WindowMain::slotDateTimeChanged()
