@@ -2,8 +2,9 @@
 #define WINDOW_VIEW_SINGLE_H
 
 #include <QMainWindow>
-#include <QSqlQueryModel>
 #include "ui_WindowViewSingle.h"
+
+class QwtPlotCurve;
 
 class WindowViewSingle :public QMainWindow
 {
@@ -14,12 +15,14 @@ public:
 
 public slots:
 	void slotCallLogChanged();
-	void slotPhoneNumberChanged(const QString & text);
-	void slotDateTimeChanged();
+	void slotViewSingle();
 
 private:
 	Ui::WindowViewSingle ui;
-	QSqlQueryModel* m_modelPhoneNumber;
+
+	QwtPlotCurve* m_curveSelf;
+	QwtPlotCurve* m_curveOther;
+	QwtPlotCurve* m_curveAll;
 };
 
 #endif
