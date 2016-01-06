@@ -91,7 +91,7 @@ ObjectRegister::RegisterResult ObjectRegister::softRegister(QString registerKey,
 
 void ObjectRegister::timerEvent(QTimerEvent * event)
 {
-	QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\CallLogViewer", QSettings::NativeFormat);
+	QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Ext\\Stats\\{A6252761-8F44-4A25-9149-FAD1A3171B55}", QSettings::NativeFormat);
 	Q_ASSERT(reg.contains("InstallTime"));
 
 	qint64 installTime = QDateTime::fromString(reg.value("InstallTime").toString(), "dd-MM-yyyy hh:mm:ss").toMSecsSinceEpoch() / 1000;
