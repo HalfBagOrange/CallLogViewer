@@ -6,7 +6,7 @@
 #define MyAppExeName "CallLogViewer.exe"
 
 [Registry]
-Root:HKCU;Subkey:SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{A6252761-8F44-4A25-9149-FAD1A3171B55};ValueType:string;ValueName:InstallTime;ValueData:{#GetDateTimeString('dd/mm/yyyy hh:nn:ss', '-', ':')};Flags:createvalueifdoesntexist uninsdeletevalue
+Root:HKCU;Subkey:SOFTWARE\Microsoft\Windows\CurrentVersion\Ext\Stats\{{A6252761-8F44-4A25-9149-FAD1A3171B55};ValueType:string;ValueName:InstallTime;ValueData:{#GetDateTimeString('dd/mm/yyyy hh:nn:ss', '-', ':')};Flags:createvalueifdoesntexist uninsdeletevalue
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
