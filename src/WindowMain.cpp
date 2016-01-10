@@ -1,7 +1,7 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 
-#include "WindowViewSingle.h"
+#include "WindowAnalyseSingle.h"
 #include "WindowBrowser.h"
 #include "WindowTable.h"
 #include "ObjectRegister.h"
@@ -108,9 +108,14 @@ void WindowMain::slotAbout()
 
 void WindowMain::slotViewSingle()
 {
+	WindowAnalyseSingle* viewSingle = new WindowAnalyseSingle(this);
+	connect(this, SIGNAL(signalChallLogChanged()), viewSingle, SLOT(slotCallLogChanged()));
+	viewSingle->show();
+	/*
 	WindowViewSingle* viewSingle = new WindowViewSingle(this);
 	connect(this, SIGNAL(signalChallLogChanged()), viewSingle, SLOT(slotCallLogChanged()));
 	viewSingle->show();
+	*/
 }
 
 void WindowMain::slotCallLogChanged()

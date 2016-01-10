@@ -143,21 +143,22 @@
     <ClCompile Include="CallLogPlot.cpp" />
     <ClCompile Include="DialogHelp.cpp" />
     <ClCompile Include="DialogLogin.cpp" />
+    <ClCompile Include="GeneratedFiles\moc_CallLogDataBase.cpp" />
     <ClCompile Include="GeneratedFiles\moc_CallLogPlot.cpp" />
     <ClCompile Include="GeneratedFiles\moc_DialogHelp.cpp" />
     <ClCompile Include="GeneratedFiles\moc_DialogLogin.cpp" />
     <ClCompile Include="GeneratedFiles\moc_ObjectRegister.cpp" />
+    <ClCompile Include="GeneratedFiles\moc_WindowAnalyseSingle.cpp" />
     <ClCompile Include="GeneratedFiles\moc_WindowBrowser.cpp" />
     <ClCompile Include="GeneratedFiles\moc_WindowMain.cpp" />
     <ClCompile Include="GeneratedFiles\moc_WindowTable.cpp" />
-    <ClCompile Include="GeneratedFiles\moc_WindowViewSingle.cpp" />
     <ClCompile Include="ObjectRegister.cpp" />
     <ClCompile Include="SeriseKey.cpp" />
+    <ClCompile Include="WindowAnalyseSingle.cpp" />
     <ClCompile Include="WindowBrowser.cpp" />
     <ClCompile Include="WindowMain.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="WindowTable.cpp" />
-    <ClCompile Include="WindowViewSingle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="WindowMain.h">
@@ -200,9 +201,9 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="WindowViewSingle.h">
+    <CustomBuild Include="WindowAnalyseSingle.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing WindowViewSingle.h...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing WindowAnalyseSingle.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\moc_%(Filename).cpp</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
     </CustomBuild>
@@ -254,6 +255,7 @@
     </CustomBuild>
     <ClInclude Include="GeneratedFiles\ui_DialogHelp.h" />
     <ClInclude Include="GeneratedFiles\ui_DialogLogin.h" />
+    <ClInclude Include="GeneratedFiles\ui_WindowAnalyseSingle.h" />
     <ClInclude Include="GeneratedFiles\ui_WindowBrowser.h" />
     <ClInclude Include="GeneratedFiles\ui_WindowTable.h" />
     <ClInclude Include="GeneratedFiles\ui_WindowViewSingle.h" />
@@ -336,7 +338,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="WindowViewSingle.ui">
+    <CustomBuild Include="WindowAnalyseSingle.ui">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
