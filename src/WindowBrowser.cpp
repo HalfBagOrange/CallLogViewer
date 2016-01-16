@@ -195,6 +195,8 @@ void WindowBrowser::fetchCallLogFromChinaMobileTable(QWebElement& table)
 	}
 	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待"));
 
+	setDisabled(true);
+
 	int count = 0;
 	QWebElement & tbody = table.findFirst("tbody");
 	QWebElementCollection & trCollection = tbody.findAll("tr");
@@ -278,6 +280,8 @@ void WindowBrowser::fetchCallLogFromChinaMobileTable(QWebElement& table)
 		count++;
 	}
 
+	setEnabled(true);
+
 	QString info;
 	QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");
 	QMessageBox::about(this, QStringLiteral("信息"), info);
@@ -297,6 +301,8 @@ void WindowBrowser::fetchCallLogFromChinaTelecomTable(QWebElement& table)
 		query.exec("delete from CallLog");
 	}
 	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待"));
+
+	setDisabled(true);
 
     QWebElementCollection trAll = table.findAll("tr");
     qDebug() << "tr count " << trAll.count();
@@ -343,6 +349,8 @@ void WindowBrowser::fetchCallLogFromChinaTelecomTable(QWebElement& table)
 			<< ", '" << address << "', ');";
 		query.exec(cmd);
     }
+
+	setEnabled(true);
 
     QString info;
     QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");
