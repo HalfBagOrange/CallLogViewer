@@ -49,7 +49,7 @@ ObjectRegister::RegisterResult ObjectRegister::softRegister(QString registerKey,
 	QString seriseKey = getSoftSeriseKey();
 
 	RegisterResult result = registerFail;
-	m_trialTime = 3 * 24 * 60;
+	m_trialTime = 7 * 24 * 60;
 	if (registerKey == QCryptographicHash::hash(seriseKey.toStdString().c_str(), QCryptographicHash::Sha224).toHex()) //注册成功，可永久使用
 	{
 		if (0 != m_timer)
@@ -67,7 +67,7 @@ ObjectRegister::RegisterResult ObjectRegister::softRegister(QString registerKey,
 	}
 	else if (registerKey == QCryptographicHash::hash(seriseKey.toStdString().c_str(), QCryptographicHash::Md5).toHex()) //注册成功,试用1周
 	{
-		m_trialTime = 5 * 24 * 60;
+		m_trialTime = 7 * 24 * 60;
 		result = registerSuccessWeek;
 	}
 	
