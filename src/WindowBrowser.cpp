@@ -37,6 +37,8 @@ WindowBrowser::WindowBrowser(QWidget * parent, Qt::WindowFlags flags)
 	m_webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 	setCentralWidget(m_webView);
 
+	ui.label->setParent(m_webView);
+
 	connect(m_webView, SIGNAL(titleChanged(QString)), SLOT(slotAdjustTitle()));
 	connect(m_webView, SIGNAL(loadProgress(int)), SLOT(slotAdjustProgress(int)));
 	connect(m_webView, SIGNAL(linkClicked(const QUrl&)), SLOT(slotGotoLinkUrl(const QUrl&)));
@@ -195,7 +197,12 @@ void WindowBrowser::fetchCallLogFromChinaMobileTable(QWebElement& table)
 	}
 	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待"));
 
-	setDisabled(true);
+	//setDisabled(true);
+	setCursor(Qt::BusyCursor);
+	ui.label->resize(m_webView->size());
+	ui.label->setText(QStringLiteral("系统正忙，正在提取数据,请耐心等待......"));
+	ui.label->repaint();
+	repaint();
 
 	int count = 0;
 	QWebElement & tbody = table.findFirst("tbody");
@@ -280,7 +287,11 @@ void WindowBrowser::fetchCallLogFromChinaMobileTable(QWebElement& table)
 		count++;
 	}
 
-	setEnabled(true);
+	//setEnabled(true);
+	unsetCursor();
+	ui.label->setText("");
+	ui.label->repaint();
+	repaint();
 
 	QString info;
 	QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");
@@ -302,7 +313,12 @@ void WindowBrowser::fetchCallLogFromChinaTelecomTable(QWebElement& table)
 	}
 	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待"));
 
-	setDisabled(true);
+	//setDisabled(true);
+	setCursor(Qt::BusyCursor);
+	ui.label->resize(m_webView->size());
+	ui.label->setText(QStringLiteral("系统正忙，正在提取数据,请耐心等待......"));
+	ui.label->repaint();
+	repaint();
 
     QWebElementCollection trAll = table.findAll("tr");
     qDebug() << "tr count " << trAll.count();
@@ -350,7 +366,11 @@ void WindowBrowser::fetchCallLogFromChinaTelecomTable(QWebElement& table)
 		query.exec(cmd);
     }
 
-	setEnabled(true);
+	//setEnabled(true);
+	unsetCursor();
+	ui.label->setText("");
+	ui.label->repaint();
+	repaint();
 
     QString info;
     QTextStream(&info) << QStringLiteral("提取") << count << QStringLiteral("条通话记录，请及时查看");

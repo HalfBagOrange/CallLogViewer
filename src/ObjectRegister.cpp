@@ -97,7 +97,7 @@ void ObjectRegister::timerEvent(QTimerEvent * event)
 	qint64 installTime = QDateTime::fromString(reg.value("InstallTime").toString(), "dd-MM-yyyy hh:mm:ss").toMSecsSinceEpoch() / 1000;
 	qint64 currentTime = QDateTime::currentMSecsSinceEpoch() / 1000;
 
-	if (currentTime <= installTime || (currentTime - installTime) >= m_trialTime)
+	if (currentTime <= installTime || (currentTime - installTime) >= m_trialTime * 60)
 	{
 		emit signalTrialTimeout();
 		killTimer(m_timer);
