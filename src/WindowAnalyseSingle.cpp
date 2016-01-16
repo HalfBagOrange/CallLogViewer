@@ -105,7 +105,7 @@ void WindowAnalyseSingle::slotDateTimeChanged()
 	QDateTime startDate = ui.dateEdit->dateTime();
 	QDateTime endDate = ui.dateEdit_2->dateTime();
 
-	for (; startDate < endDate; startDate = startDate.addDays(1))
+	for (; startDate <= endDate; startDate = startDate.addDays(1))
 	{
 		int count = 0;
 		int time = 0;
