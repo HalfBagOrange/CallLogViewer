@@ -105,7 +105,6 @@ void WindowBrowser::slotChangeLocation()
 	QUrl url = QUrl::fromUserInput(m_locationEdit->text());
 	m_webView->load(url);
 	m_webView->setFocus();
-	m_firstLoad = true;
 }
 
 void WindowBrowser::slotFetchCallLog()
@@ -185,13 +184,15 @@ QWebElement const& WindowBrowser::findTableFromChinaMobileWebTable(QWebElement c
 
 void WindowBrowser::fetchCallLogFromChinaMobileTable(QWebElement& table)
 {
-	if (m_firstLoad 
-		&& (QMessageBox::Yes == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否删除原先的数据"))))
+	if (QMessageBox::No == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否执行提取数据操作，这个过程比较耗时")))
+	{
+		return;
+	}
+	if (QMessageBox::Yes == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否删除原先的数据")))
 	{
 		QSqlQuery query;
 		query.exec("delete from CallLog");
 	}
-	m_firstLoad = false;
 	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待"));
 
 	int count = 0;
@@ -286,13 +287,15 @@ void WindowBrowser::fetchCallLogFromChinaMobileTable(QWebElement& table)
 
 void WindowBrowser::fetchCallLogFromChinaTelecomTable(QWebElement& table)
 {
-	if (m_firstLoad
-		&& QMessageBox::Yes == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否删除原先的数据")))
+	if (QMessageBox::No == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否执行提取数据操作，这个过程比较耗时")))
+	{
+		return;
+	}
+	if (QMessageBox::Yes == QMessageBox::question(this, QStringLiteral("询问"), QStringLiteral("是否删除原先的数据")))
 	{
 		QSqlQuery query;
 		query.exec("delete from CallLog");
 	}
-	m_firstLoad = false;
 	QMessageBox::about(this, QStringLiteral("信息"), QStringLiteral("开始提取通话记录，此过程比较耗时请耐心等待"));
 
     QWebElementCollection trAll = table.findAll("tr");
@@ -347,5 +350,3 @@ void WindowBrowser::fetchCallLogFromChinaTelecomTable(QWebElement& table)
 
 	emit signalCallLogChanged();
 }
-
-

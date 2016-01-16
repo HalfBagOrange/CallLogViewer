@@ -39,8 +39,6 @@ private:
 
     WebView* m_webView;
 	QLineEdit* m_locationEdit;
-
-	bool m_firstLoad;
 };
 
 #endif
